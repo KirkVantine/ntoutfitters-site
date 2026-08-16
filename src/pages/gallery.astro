@@ -1,0 +1,16 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const photos = Array.from({ length: 11 }, (_, i) => {
+  const n = String(i + 1).padStart(2, '0');
+  return `/images/gallery-${n}.jpg`;
+});
+---
+<Layout title="Gallery" description="Photos from N&T Outfitters guided fishing charters around Michigan.">
+  <h1>Gallery</h1>
+  <div class="gallery-grid">
+    {photos.map((src) => (
+      <img src={src} alt="N&T Outfitters fishing trip photo" loading="lazy" />
+    ))}
+  </div>
+</Layout>

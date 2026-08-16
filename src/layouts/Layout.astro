@@ -1,0 +1,96 @@
+---
+interface Props {
+  title: string;
+  description?: string;
+}
+const {
+  title,
+  description = 'N&T Outfitters LLC offers guided fishing charters across Michigan, for all skill levels.',
+} = Astro.props;
+
+// Social preview images must be absolute URLs.
+const ogImage = new URL('/images/logo.png', Astro.site ?? Astro.url).href;
+const canonical = new URL(Astro.url.pathname, Astro.site ?? Astro.url).href;
+
+const trim = (p: string) => (p !== '/' && p.endsWith('/') ? p.slice(0, -1) : p);
+const here = trim(Astro.url.pathname);
+const isCurrent = (href: string) =>
+  href === '/' ? here === '/' : here === trim(href) || here.startsWith(trim(href) + '/');
+
+const navLinks = [
+  { href: '/', label: 'Home' },
+  { href: '/charters', label: 'Charters' },
+  { href: '/gallery', label: 'Gallery' },
+  { href: '/about', label: 'About' },
+  { href: '/sponsorships', label: 'Sponsorships' },
+];
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title} | N&T Outfitters</title>
+    <meta name="description" content={description} />
+
+    <link rel="icon" type="image/png" href="/images/logo.png" />
+
+    <link rel="canonical" href={canonical} />
+
+    <meta property="og:title" content={`${title} | N&T Outfitters`} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:site_name" content="N&T Outfitters" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="header-inner">
+        <a href="/" class="brand">
+          <img src="/images/logo.png" alt="N&T Outfitters logo" width="44" height="44" />
+          <span class="brand-title">N&amp;T Outfitters</span>
+        </a>
+
+        <div class="header-actions">
+          <a href="/charters" class="btn btn-primary">Book a Trip</a>
+        </div>
+
+        <nav class="site-nav">
+          <ul>
+            {navLinks.map((link) => (
+              <li>
+                <a href={link.href} aria-current={isCurrent(link.href) ? 'page' : undefined}>
+                  {link.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <slot />
+    </main>
+
+    <footer class="site-footer">
+      <p><strong>N&amp;T Outfitters LLC</strong> &mdash; Guided fishing charters in Michigan</p>
+      <p>
+        Captain Nathaniel &middot;
+        <a href="tel:7347170773">734-717-0773</a> &middot;
+        <a href="mailto:nathanielterbush@ntoutfitters.org">nathanielterbush@ntoutfitters.org</a>
+      </p>
+      <p>
+        <a href="https://www.instagram.com/nt_outfitters/" target="_blank" rel="noopener noreferrer">
+          Follow on Instagram
+        </a>
+      </p>
+      <p class="copyright">&copy; {new Date().getFullYear()} N&amp;T Outfitters LLC</p>
+    </footer>
+  </body>
+</html>
+
+<style is:global>
+  @import '../styles/global.css';
+</style>

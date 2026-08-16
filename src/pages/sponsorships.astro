@@ -1,0 +1,76 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const currentSponsors = [
+  { name: 'Lake Drive Marine', url: 'https://www.lakedrivemarine.com/' },
+  { name: 'Lund Boats', url: null },
+  { name: 'Art Moehn Chevrolet of Chelsea', url: 'https://www.artmoehnchelsea.com/' },
+  { name: 'BlackBirdie Bouquets and Events', url: null },
+  { name: 'Mill Creek Rods', url: null },
+  { name: 'Holiday Restaurant', url: 'https://holidaysrestaurant.com/' },
+  {
+    name: 'State Farm - Cindy Strang',
+    url: 'https://www.statefarm.com/agent/us/mi/dexter/cindy-strang-brnw01ys000',
+  },
+  { name: 'Miller Engineering', url: 'https://www.millerengineering.com/' },
+];
+---
+<Layout title="Sponsorships" description="Sponsorship opportunities with N&T Outfitters.">
+  <h1>Sponsorship Information</h1>
+  <p>
+    Thank you for your interest in sponsorship opportunities with us! Our sponsorship program
+    collaborates with companies from various industries, including fishing and beyond. By
+    partnering with us, you not only contribute to enhancing the overall experience for anglers
+    but also gain exposure for your brand through our marketing efforts. If you have any
+    questions or would like to discuss further, please reach out by email or phone below.
+  </p>
+
+  <section class="section">
+    <h2>2025 Fishing Sponsorship</h2>
+    <p>
+      The sponsorship funds will help with funding for jerseys, gas, boat accessories, lodging,
+      and other fishing funds as well as entry fees. If you wish to sponsor more than the level
+      minimum, you may do so.
+    </p>
+
+    <div class="sponsor-tier">
+      <h3>Level 1 &mdash; $250 and up</h3>
+      <p>Logo displayed on jersey. Advertising on social media posts.</p>
+    </div>
+    <div class="sponsor-tier">
+      <h3>Level 2 &mdash; $500 and up</h3>
+      <p>Logo displayed on jersey. Advertising on social media posts. Carpet decal on boat.</p>
+    </div>
+    <div class="sponsor-tier">
+      <h3>Level 3 &mdash; $1,000 and up</h3>
+      <p>
+        Logo displayed on jersey. Advertising on social media posts. Carpet decal on boat.
+        Decal on truck for advertisement.
+      </p>
+    </div>
+    <div class="sponsor-tier">
+      <h3>Level 4 &mdash; Fishing Equipment Sponsor</h3>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>Current Sponsors</h2>
+    <ul class="sponsor-list">
+      {currentSponsors.map((s) => (
+        <li>{s.url ? <a href={s.url} target="_blank" rel="noopener noreferrer">{s.name}</a> : s.name}</li>
+      ))}
+    </ul>
+  </section>
+
+  <section class="section">
+    <h2>Interested in Sponsoring?</h2>
+    <p>
+      <a
+        class="btn btn-primary"
+        href="mailto:nathanielterbush@ntoutfitters.org?subject=Sponsorship%20Inquiry"
+      >
+        Email a Sponsorship Inquiry
+      </a>
+    </p>
+  </section>
+</Layout>

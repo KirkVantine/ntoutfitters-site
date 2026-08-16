@@ -1,0 +1,51 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { trips } from '../data/trips';
+
+const bookingHref = (tripName: string) =>
+  `mailto:nathanielterbush@ntoutfitters.org?subject=${encodeURIComponent(`Booking inquiry: ${tripName}`)}`;
+---
+<Layout title="Home">
+  <div class="hero">
+    <img src="/images/hero-1.jpg" alt="N&T Outfitters fishing charter on the water" />
+  </div>
+  <div class="hero-caption">
+    <h1>Guided Fishing Charters in Michigan</h1>
+    <p>
+      N&amp;T Outfitters LLC is proud to offer guided fishing trips in our great state of
+      Michigan. Trips are family friendly and are for all levels of anglers. For information
+      about a trip or other questions, contact Captain Nathaniel at
+      <a href="tel:7347170773">734-717-0773</a> or visit the
+      <a href="/about">About</a> page.
+    </p>
+  </div>
+
+  <section class="section">
+    <h2>Our Vision</h2>
+    <p>
+      N&amp;T Outfitters is dedicated to getting more anglers out on the water, offering trips
+      for all skill levels. Whether you're an experienced angler or just starting, N&amp;T
+      Outfitters is here to help you hone your skills and enjoy the sport. We believe in passing
+      down the tradition of fishing from one generation to the next, ensuring that the love for
+      the water and the thrill of the catch live on for years to come. Let us be a part of your
+      fishing adventure!
+    </p>
+    <a href="/about" class="btn btn-outline">Meet Your Captain</a>
+  </section>
+
+  <section class="section">
+    <h2>Book Your Trip</h2>
+    <div class="trip-grid">
+      {trips.map((trip) => (
+        <div class="trip-card">
+          <h3>{trip.name}</h3>
+          <p class="trip-meta">{trip.duration}</p>
+          <p class="trip-price">{trip.price}</p>
+          <a href={bookingHref(trip.name)} class="btn btn-primary">
+            {trip.requestOnly ? 'Request to Book' : 'Book Now'}
+          </a>
+        </div>
+      ))}
+    </div>
+  </section>
+</Layout>

@@ -1,0 +1,33 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { trips } from '../data/trips';
+
+const bookingHref = (tripName: string) =>
+  `mailto:nathanielterbush@ntoutfitters.org?subject=${encodeURIComponent(`Booking inquiry: ${tripName}`)}`;
+---
+<Layout title="Charters" description="Guided fishing trips with N&T Outfitters — pricing and details for every charter.">
+  <section class="section">
+    <h1>Join Us For a Trip Today!</h1>
+    <p>
+      All trips are priced for up to two participants, unless otherwise noted in the trip
+      description. Children's trips are available for anglers 16 years old and under. To view
+      the full description of each trip, click Book Now and browse available dates.
+    </p>
+  </section>
+
+  <section class="section">
+    <h2>Our Services</h2>
+    <div class="trip-grid">
+      {trips.map((trip) => (
+        <div class="trip-card">
+          <h3>{trip.name}</h3>
+          <p class="trip-meta">{trip.duration}</p>
+          <p class="trip-price">{trip.price}</p>
+          <a href={bookingHref(trip.name)} class="btn btn-primary">
+            {trip.requestOnly ? 'Request to Book' : 'Book Now'}
+          </a>
+        </div>
+      ))}
+    </div>
+  </section>
+</Layout>
