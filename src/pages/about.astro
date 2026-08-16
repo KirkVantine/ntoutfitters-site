@@ -1,21 +1,129 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import { site, mailto } from '../data/site';
+
+// Read off the boat in the captain's own photos (public/images/captain.jpg).
+const boat = [
+  { label: 'Boat', value: 'Nitro Z18' },
+  { label: 'Power', value: 'Mercury 175 Pro XS OptiMax' },
+  { label: 'Anchoring', value: 'Minn Kota Raptor shallow-water anchors' },
+  { label: 'Trolling motor', value: 'Minn Kota bow mount' },
+  { label: 'Electronics', value: 'Garmin sonar and mapping' },
+  { label: 'Capacity', value: 'Up to 2 anglers plus the captain' },
+];
 ---
-<Layout title="About" description="Meet Captain Nathaniel of N&T Outfitters, guided fishing charters in Michigan.">
-  <h1>Meet Your Captain</h1>
-  <img src="/images/captain.jpg" alt="Captain Nathaniel of N&T Outfitters" class="captain-photo" />
-  <p>
-    Welcome to N&amp;T Outfitters, I'm Captain Nathaniel, and I've been fishing my whole life.
-    I'm passionate about the outdoors and love sharing that enthusiasm with my clients as we
-    chase the fish of their dreams. Let's make some unforgettable memories on the water!
-  </p>
+
+<Layout
+  title="About"
+  description={`Meet ${site.captain} of N&T Outfitters — guided bass and walleye fishing charters across Michigan.`}
+  image="/images/captain.jpg"
+>
+  <section class="page-hero">
+    <div class="page-hero-media">
+      <img src="/images/hero-1.jpg" alt="" />
+    </div>
+    <div class="wrap">
+      <p class="eyebrow eyebrow-light">About</p>
+      <h1>Meet Your Captain</h1>
+      <p>{site.captain} &middot; N&amp;T Outfitters LLC</p>
+    </div>
+  </section>
 
   <section class="section">
-    <h2>Contact</h2>
-    <p>I'm always looking for new and exciting opportunities. Let's connect.</p>
-    <p>
-      <a href="mailto:nathanielterbush@ntoutfitters.org">nathanielterbush@ntoutfitters.org</a><br />
-      <a href="tel:7347170773">734-717-0773</a>
-    </p>
+    <div class="wrap">
+      <div class="split">
+        <div class="split-media">
+          <img
+            src="/images/captain.jpg"
+            alt={`${site.captain} on his Nitro Z18 bass boat`}
+            loading="lazy"
+          />
+        </div>
+        <div class="prose">
+          <p class="eyebrow">Nathaniel TerBush</p>
+          <h2>Fishing His Whole Life</h2>
+          <p class="lead">
+            Welcome to N&amp;T Outfitters. I'm Captain Nathaniel, and I've been fishing my whole
+            life.
+          </p>
+          <p>
+            I'm passionate about the outdoors and love sharing that enthusiasm with my clients as
+            we chase the fish of their dreams. Let's make some unforgettable memories on the
+            water.
+          </p>
+          <p>
+            Trips run across {site.region} and up north — Lake St. Clair and Saginaw Bay for
+            smallmouth, the Detroit River for walleye, and the Huron River Chain of Lakes when
+            the big water is blown out. Every trip is family friendly and open to anglers of any
+            experience level.
+          </p>
+          <div class="btn-row">
+            <a href="/charters" class="btn btn-primary">See Trips &amp; Rates</a>
+            <a href={site.phoneHref} class="btn btn-outline">Call {site.phone}</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-soft">
+    <div class="wrap">
+      <div class="split">
+        <div class="prose">
+          <p class="eyebrow">The Rig</p>
+          <h2>What You'll Fish From</h2>
+          <p>
+            A Nitro Z18 set up to fish hard and cover water. Shallow-water anchors hold you on a
+            spot when the wind is up, and the electronics take the guesswork out of finding fish.
+          </p>
+          <ul class="trip-facts" style="margin-top:1.5rem;border-top:none;padding-top:0">
+            {
+              boat.map((row) => (
+                <li>
+                  <span class="trip-fact-label">{row.label}</span>
+                  <span class="trip-fact-value">{row.value}</span>
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+        <div class="split-media">
+          <img
+            src="/images/hero-2.jpg"
+            alt="The Nitro Z18 on a Michigan lake at sunrise"
+            loading="lazy"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap-narrow">
+      <div class="section-head section-head-center">
+        <p class="eyebrow">Contact</p>
+        <h2>Let's Connect</h2>
+        <p class="lead">
+          I'm always looking for new and exciting opportunities — trips, sponsorships, or just
+          talking fishing.
+        </p>
+      </div>
+
+      <ul class="contact-lines">
+        <li>Phone &amp; text &mdash; <a href={site.phoneHref}>{site.phone}</a></li>
+        <li>Email &mdash; <a href={mailto('Hello from the website')}>{site.email}</a></li>
+        <li>
+          Instagram &mdash;
+          <a href={site.instagram} target="_blank" rel="noopener noreferrer">
+            {site.instagramHandle}
+          </a>
+        </li>
+      </ul>
+
+      <div class="btn-row">
+        <a href={site.phoneHref} class="btn btn-primary">Call or Text</a>
+        <a href={mailto('Hello from the website')} class="btn btn-outline">Send an Email</a>
+      </div>
+    </div>
   </section>
 </Layout>

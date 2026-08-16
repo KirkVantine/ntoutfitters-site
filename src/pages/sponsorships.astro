@@ -1,5 +1,39 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import { site, mailto } from '../data/site';
+
+const tiers = [
+  {
+    name: 'Level 1',
+    amount: '$250 and up',
+    perks: ['Logo displayed on jersey', 'Advertising on social media posts'],
+  },
+  {
+    name: 'Level 2',
+    amount: '$500 and up',
+    perks: [
+      'Logo displayed on jersey',
+      'Advertising on social media posts',
+      'Carpet decal on boat',
+    ],
+    featured: true,
+  },
+  {
+    name: 'Level 3',
+    amount: '$1,000 and up',
+    perks: [
+      'Logo displayed on jersey',
+      'Advertising on social media posts',
+      'Carpet decal on boat',
+      'Decal on truck for advertisement',
+    ],
+  },
+  {
+    name: 'Level 4',
+    amount: 'Equipment sponsor',
+    perks: ['Support the season with fishing equipment rather than cash'],
+  },
+];
 
 const currentSponsors = [
   { name: 'Lake Drive Marine', url: 'https://www.lakedrivemarine.com/' },
@@ -9,68 +43,106 @@ const currentSponsors = [
   { name: 'Mill Creek Rods', url: null },
   { name: 'Holiday Restaurant', url: 'https://holidaysrestaurant.com/' },
   {
-    name: 'State Farm - Cindy Strang',
+    name: 'State Farm — Cindy Strang',
     url: 'https://www.statefarm.com/agent/us/mi/dexter/cindy-strang-brnw01ys000',
   },
   { name: 'Miller Engineering', url: 'https://www.millerengineering.com/' },
 ];
 ---
-<Layout title="Sponsorships" description="Sponsorship opportunities with N&T Outfitters.">
-  <h1>Sponsorship Information</h1>
-  <p>
-    Thank you for your interest in sponsorship opportunities with us! Our sponsorship program
-    collaborates with companies from various industries, including fishing and beyond. By
-    partnering with us, you not only contribute to enhancing the overall experience for anglers
-    but also gain exposure for your brand through our marketing efforts. If you have any
-    questions or would like to discuss further, please reach out by email or phone below.
-  </p>
 
-  <section class="section">
-    <h2>2025 Fishing Sponsorship</h2>
-    <p>
-      The sponsorship funds will help with funding for jerseys, gas, boat accessories, lodging,
-      and other fishing funds as well as entry fees. If you wish to sponsor more than the level
-      minimum, you may do so.
-    </p>
-
-    <div class="sponsor-tier">
-      <h3>Level 1 &mdash; $250 and up</h3>
-      <p>Logo displayed on jersey. Advertising on social media posts.</p>
+<Layout
+  title="Sponsorships"
+  description="Sponsorship opportunities with N&T Outfitters. Four levels of support for the tournament season, plus our current sponsors."
+  image="/images/gallery-01.jpg"
+>
+  <section class="page-hero">
+    <div class="page-hero-media">
+      <img src="/images/gallery-05.jpg" alt="" />
     </div>
-    <div class="sponsor-tier">
-      <h3>Level 2 &mdash; $500 and up</h3>
-      <p>Logo displayed on jersey. Advertising on social media posts. Carpet decal on boat.</p>
-    </div>
-    <div class="sponsor-tier">
-      <h3>Level 3 &mdash; $1,000 and up</h3>
+    <div class="wrap">
+      <p class="eyebrow eyebrow-light">Partnerships</p>
+      <h1>Sponsorship Information</h1>
       <p>
-        Logo displayed on jersey. Advertising on social media posts. Carpet decal on boat.
-        Decal on truck for advertisement.
+        Thank you for your interest in sponsorship opportunities with us. Our program
+        collaborates with companies from various industries, inside fishing and beyond. By
+        partnering with us you help improve the experience for anglers and gain exposure for
+        your brand through our marketing efforts.
       </p>
     </div>
-    <div class="sponsor-tier">
-      <h3>Level 4 &mdash; Fishing Equipment Sponsor</h3>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head">
+        {/* TODO(nathaniel): update the season year each spring. */}
+        <p class="eyebrow">Fishing Sponsorship</p>
+        <h2>Four Ways to Support the Season</h2>
+        <p class="lead">
+          Sponsorship funds help cover jerseys, gas, boat accessories, lodging, entry fees, and
+          other fishing costs. If you'd like to sponsor above a level minimum, you're welcome to.
+        </p>
+      </div>
+
+      <div class="tier-grid">
+        {
+          tiers.map((tier) => (
+            <div class={`tier${tier.featured ? ' tier-featured' : ''}`}>
+              <h3>{tier.name}</h3>
+              <p class="tier-amount">{tier.amount}</p>
+              <ul class="checklist">
+                {tier.perks.map((perk) => (
+                  <li>{perk}</li>
+                ))}
+              </ul>
+            </div>
+          ))
+        }
+      </div>
     </div>
   </section>
 
-  <section class="section">
-    <h2>Current Sponsors</h2>
-    <ul class="sponsor-list">
-      {currentSponsors.map((s) => (
-        <li>{s.url ? <a href={s.url} target="_blank" rel="noopener noreferrer">{s.name}</a> : s.name}</li>
-      ))}
-    </ul>
+  <section class="section section-soft">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Thank You</p>
+        <h2>Current Sponsors</h2>
+        <p class="lead">
+          These businesses keep the boat on the water. If you're local, give them your business.
+        </p>
+      </div>
+      <ul class="sponsor-list">
+        {
+          currentSponsors.map((s) => (
+            <li>
+              {s.url ? (
+                <a href={s.url} target="_blank" rel="noopener noreferrer">
+                  {s.name}
+                </a>
+              ) : (
+                <span>{s.name}</span>
+              )}
+            </li>
+          ))
+        }
+      </ul>
+    </div>
   </section>
 
-  <section class="section">
-    <h2>Interested in Sponsoring?</h2>
-    <p>
-      <a
-        class="btn btn-primary"
-        href="mailto:nathanielterbush@ntoutfitters.org?subject=Sponsorship%20Inquiry"
-      >
-        Email a Sponsorship Inquiry
-      </a>
-    </p>
+  <section class="cta-band">
+    <div class="cta-band-media">
+      <img src="/images/hero-1.jpg" alt="" loading="lazy" />
+    </div>
+    <div class="wrap">
+      <p class="eyebrow eyebrow-light">Get Involved</p>
+      <h2>Interested in Sponsoring?</h2>
+      <p>
+        Reach out and {site.captainShort} will walk you through the levels and what makes sense
+        for your business.
+      </p>
+      <div class="btn-row">
+        <a class="btn btn-primary" href={mailto('Sponsorship inquiry')}>Email a Sponsorship Inquiry</a>
+        <a class="btn btn-ghost" href={site.phoneHref}>Call {site.phone}</a>
+      </div>
+    </div>
   </section>
 </Layout>

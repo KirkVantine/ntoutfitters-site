@@ -1,51 +1,259 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import { trips } from '../data/trips';
+import TripCard from '../components/TripCard.astro';
+import { featuredTrips, trips } from '../data/trips';
+import { site, mailto } from '../data/site';
 
-const bookingHref = (tripName: string) =>
-  `mailto:nathanielterbush@ntoutfitters.org?subject=${encodeURIComponent(`Booking inquiry: ${tripName}`)}`;
+// A few of the strongest photos for the home page strip; the rest live on
+// the Gallery page.
+const stripPhotos = [
+  'gallery-01',
+  'gallery-10',
+  'gallery-07',
+  'gallery-04',
+  'gallery-09',
+  'gallery-11',
+];
 ---
-<Layout title="Home">
-  <div class="hero">
-    <img src="/images/hero-1.jpg" alt="N&T Outfitters fishing charter on the water" />
-  </div>
-  <div class="hero-caption">
-    <h1>Guided Fishing Charters in Michigan</h1>
-    <p>
-      N&amp;T Outfitters LLC is proud to offer guided fishing trips in our great state of
-      Michigan. Trips are family friendly and are for all levels of anglers. For information
-      about a trip or other questions, contact Captain Nathaniel at
-      <a href="tel:7347170773">734-717-0773</a> or visit the
-      <a href="/about">About</a> page.
-    </p>
+
+<Layout
+  title="N&T Outfitters — Michigan Fishing Charters"
+  titleTemplate={false}
+  description={`Guided fishing charters across Michigan with ${site.captain}. Smallmouth bass on Lake St. Clair, walleye on the Detroit River, and family friendly trips for every skill level.`}
+>
+  <section class="hero">
+    <div class="hero-media">
+      <img
+        src="/images/hero-2.jpg"
+        alt="An angler casting from a Nitro bass boat at sunrise on a Michigan lake"
+        fetchpriority="high"
+      />
+    </div>
+    <div class="hero-inner">
+      <div class="hero-content">
+        <p class="eyebrow eyebrow-light">Southeast Michigan &middot; {site.captain}</p>
+        <h1>Fish Michigan's Best Water</h1>
+        <p>
+          Guided bass and walleye charters on Lake St. Clair, the Detroit River, and beyond.
+          Family friendly trips for every skill level — from your first cast to your personal
+          best.
+        </p>
+        <div class="btn-row">
+          <a href="/charters" class="btn btn-primary">See Trips &amp; Rates</a>
+          <a href={site.phoneHref} class="btn btn-ghost">Call {site.phone}</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="trust-bar">
+    <ul>
+      <li>
+        <span class="trust-num">{trips.length}</span>
+        <span class="trust-label">Trip options</span>
+      </li>
+      <li>
+        <span class="trust-num">5</span>
+        <span class="trust-label">Michigan fisheries</span>
+      </li>
+      <li>
+        <span class="trust-num">All</span>
+        <span class="trust-label">Skill levels</span>
+      </li>
+      <li>
+        <span class="trust-num">4&ndash;8</span>
+        <span class="trust-label">Hour trips</span>
+      </li>
+    </ul>
   </div>
 
   <section class="section">
-    <h2>Our Vision</h2>
-    <p>
-      N&amp;T Outfitters is dedicated to getting more anglers out on the water, offering trips
-      for all skill levels. Whether you're an experienced angler or just starting, N&amp;T
-      Outfitters is here to help you hone your skills and enjoy the sport. We believe in passing
-      down the tradition of fishing from one generation to the next, ensuring that the love for
-      the water and the thrill of the catch live on for years to come. Let us be a part of your
-      fishing adventure!
-    </p>
-    <a href="/about" class="btn btn-outline">Meet Your Captain</a>
+    <div class="wrap">
+      <div class="split">
+        <div class="split-media">
+          <img
+            src="/images/captain.jpg"
+            alt={`${site.captain} aboard his Nitro Z18 bass boat`}
+            loading="lazy"
+          />
+        </div>
+        <div class="prose">
+          <p class="eyebrow">Our Vision</p>
+          <h2>More Anglers, More Time on the Water</h2>
+          <p class="lead">
+            N&amp;T Outfitters is dedicated to getting more anglers out on the water, offering
+            trips for all skill levels.
+          </p>
+          <p>
+            Whether you're an experienced angler or just starting, we're here to help you hone
+            your skills and enjoy the sport. We believe in passing down the tradition of fishing
+            from one generation to the next, ensuring that the love for the water and the thrill
+            of the catch live on for years to come. Let us be a part of your fishing adventure.
+          </p>
+          <div class="btn-row">
+            <a href="/about" class="btn btn-outline">Meet Your Captain</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-soft">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Featured Charters</p>
+        <h2>Pick Your Water</h2>
+        <p class="lead">
+          Every trip is priced for up to two anglers and includes rods, tackle, and everything
+          you need for the day. All you bring is a license and a lunch.
+        </p>
+      </div>
+
+      <div class="trip-grid">
+        {featuredTrips.map((trip) => <TripCard trip={trip} compact />)}
+      </div>
+
+      <div class="btn-row" style="margin-top:2rem">
+        <a href="/charters" class="btn btn-secondary">View All {trips.length} Trips</a>
+      </div>
+    </div>
   </section>
 
   <section class="section">
-    <h2>Book Your Trip</h2>
-    <div class="trip-grid">
-      {trips.map((trip) => (
-        <div class="trip-card">
-          <h3>{trip.name}</h3>
-          <p class="trip-meta">{trip.duration}</p>
-          <p class="trip-price">{trip.price}</p>
-          <a href={bookingHref(trip.name)} class="btn btn-primary">
-            {trip.requestOnly ? 'Request to Book' : 'Book Now'}
-          </a>
+    <div class="wrap">
+      <div class="section-head section-head-center">
+        <p class="eyebrow">Why Fish With Us</p>
+        <h2>A Day Run the Right Way</h2>
+      </div>
+
+      <div class="feature-grid">
+        <div class="feature">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+              <path d="M2 17c1.8 0 1.8 1.5 3.6 1.5S7.4 17 9.2 17s1.8 1.5 3.6 1.5S14.6 17 16.4 17s1.8 1.5 3.6 1.5"></path>
+              <path d="M20 13V7a2 2 0 0 0-2-2h-3l-1-2H10L9 5H6a2 2 0 0 0-2 2v6"></path>
+            </svg>
+          </div>
+          <h3>A Boat Built to Fish</h3>
+          <p>
+            A Nitro Z18 with a Mercury Pro XS, Raptor shallow-water anchors, and modern
+            electronics. It gets you to the fish fast and holds you on them once you're there.
+          </p>
         </div>
-      ))}
+
+        <div class="feature">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+              <path d="M3 21s2-6 9-6 9 6 9 6"></path>
+              <circle cx="12" cy="7" r="4"></circle>
+            </svg>
+          </div>
+          <h3>Every Skill Level Welcome</h3>
+          <p>
+            First time holding a rod or chasing a personal best, the day is built around you.
+            Kids' lessons are a specialty, and beginners never get talked down to.
+          </p>
+        </div>
+
+        <div class="feature">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+              <path d="M12 2 4 6v6c0 5 3.4 8.9 8 10 4.6-1.1 8-5 8-10V6Z"></path>
+              <path d="m9 12 2 2 4-4"></path>
+            </svg>
+          </div>
+          {/* TODO(nathaniel): confirm exactly what's included before publishing. */}
+          <h3>Rods &amp; Tackle On Board</h3>
+          <p>
+            Come as you are — the boat is stocked for the day. Bring your Michigan fishing
+            license, sunglasses, and something to drink.
+          </p>
+        </div>
+
+        <div class="feature">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+              <circle cx="12" cy="12" r="9"></circle>
+              <path d="M12 7v5l3.5 2"></path>
+            </svg>
+          </div>
+          <h3>Half Days &amp; Full Days</h3>
+          <p>
+            Four hours, six, eight, or a full weekend up north. Pick the length that fits the
+            group, the weather, and the attention span you're working with.
+          </p>
+        </div>
+
+        <div class="feature">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+              <path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 0 1 18 0Z"></path>
+              <circle cx="12" cy="10" r="3"></circle>
+            </svg>
+          </div>
+          <h3>Five Fisheries, One Captain</h3>
+          <p>
+            Lake St. Clair, the Detroit River, the Huron Chain, Saginaw Bay, and Northern
+            Michigan. If the wind kills one spot, there's always another that's fishing.
+          </p>
+        </div>
+
+        <div class="feature">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+              <path d="M4 21V10l8-6 8 6v11"></path>
+              <path d="M9 21v-6h6v6"></path>
+            </svg>
+          </div>
+          <h3>Local &amp; Independent</h3>
+          <p>
+            A Michigan operation backed by local sponsors. You'll deal with the captain
+            directly, start to finish — no call center, no booking desk.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-soft">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">On the Water</p>
+        <h2>Recent Catches</h2>
+      </div>
+      <div class="gallery-strip">
+        {
+          stripPhotos.map((name) => (
+            <img
+              src={`/images/${name}.jpg`}
+              alt="A fish caught on an N&T Outfitters charter"
+              loading="lazy"
+              decoding="async"
+            />
+          ))
+        }
+      </div>
+      <div class="btn-row" style="margin-top:1.5rem">
+        <a href="/gallery" class="btn btn-outline">See the Full Gallery</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-band">
+    <div class="cta-band-media">
+      <img src="/images/hero-1.jpg" alt="" loading="lazy" />
+    </div>
+    <div class="wrap">
+      <p class="eyebrow eyebrow-light">Book Your Trip</p>
+      <h2>Let's Get You on the Water</h2>
+      <p>
+        Tell {site.captainShort} what you're after and when you're free, and he'll find you a
+        date. Calling or texting is the fastest way to check open days.
+      </p>
+      <div class="btn-row">
+        <a href={site.phoneHref} class="btn btn-primary">Call {site.phone}</a>
+        <a href={mailto('Fishing trip inquiry')} class="btn btn-ghost">Send an Email</a>
+      </div>
     </div>
   </section>
 </Layout>

@@ -1,0 +1,58 @@
+---
+import type { Trip } from '../data/trips';
+import { bookingHref } from '../data/site';
+
+interface Props {
+  trip: Trip;
+  /** Home page shows a leaner card; the Charters page shows every fact. */
+  compact?: boolean;
+}
+
+const { trip, compact = false } = Astro.props;
+---
+
+<article class="trip-card">
+  <div class="trip-photo">
+    <img
+      src={trip.image}
+      alt={`${trip.species} caught on the ${trip.water}`}
+      loading="lazy"
+      decoding="async"
+    />
+    <span class="trip-tag">{trip.duration}</span>
+  </div>
+
+  <div class="trip-body">
+    <h3>{trip.shortName ?? trip.name}</h3>
+    <p class="trip-blurb">{trip.blurb}</p>
+
+    <ul class="trip-facts">
+      <li>
+        <span class="trip-fact-label">Water</span>
+        <span class="trip-fact-value">{trip.water}</span>
+      </li>
+      <li>
+        <span class="trip-fact-label">Target</span>
+        <span class="trip-fact-value">{trip.species}</span>
+      </li>
+      {
+        !compact && (
+          <li>
+            <span class="trip-fact-label">Anglers</span>
+            <span class="trip-fact-value">Up to 2</span>
+          </li>
+        )
+      }
+    </ul>
+
+    <div class="trip-foot">
+      <p class="trip-price">
+        <small>Rate</small>
+        {trip.price}
+      </p>
+      <a href={bookingHref(trip.name)} class="btn btn-primary btn-sm">
+        {trip.requestOnly ? 'Request' : 'Book Now'}
+      </a>
+    </div>
+  </div>
+</article>

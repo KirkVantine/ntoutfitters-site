@@ -1,33 +1,160 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import { trips } from '../data/trips';
+import TripCard from '../components/TripCard.astro';
+import { trips, tripGroups } from '../data/trips';
+import { site, mailto } from '../data/site';
 
-const bookingHref = (tripName: string) =>
-  `mailto:nathanielterbush@ntoutfitters.org?subject=${encodeURIComponent(`Booking inquiry: ${tripName}`)}`;
+const byGroup = tripGroups.map((group) => ({
+  group,
+  items: trips.filter((t) => t.group === group),
+}));
+
+const groupBlurbs: Record<string, string> = {
+  'Signature Trips': 'Full days on the water we know best.',
+  'Half Day Trips': 'Four hours — a morning or an afternoon bite.',
+  'Family & Getaways': 'Kids, first-timers, and weekends up north.',
+};
+
+// TODO(nathaniel): confirm this list matches how you actually run a day
+// before this goes live.
+const included = [
+  'Rods, reels, and tackle for the day',
+  'Life jackets and on-board safety equipment',
+  'Fish handling, photos, and cleaning guidance',
+  'A captain who fishes the water year-round',
+];
+
+const bring = [
+  'A current Michigan fishing license (required — sold online by the DNR)',
+  'Polarized sunglasses and a hat',
+  'Weather-appropriate layers — it is colder on the water',
+  'Food, drinks, and a soft-sided cooler',
+  'Sunscreen and a rain jacket',
+];
+
+const faqs = [
+  {
+    q: 'How many people can come along?',
+    a: 'All trips are priced for up to two participants unless the trip description says otherwise. If you have a bigger group, call and we will work something out.',
+  },
+  {
+    q: 'Do I need a fishing license?',
+    a: 'Yes. Every angler 17 and older needs a current Michigan fishing license. You can buy one in a couple of minutes on the Michigan DNR website before your trip.',
+  },
+  {
+    q: 'What if the weather turns?',
+    a: 'Safety comes first. If conditions make it unsafe to fish, we will reschedule you for another day. Michigan weather changes fast, so the call sometimes comes the morning of.',
+  },
+  {
+    q: 'I have never fished before. Is that a problem?',
+    a: 'Not at all — that is a big part of why N&T Outfitters exists. Trips run for every skill level, and the Kids Fishing Lesson is built specifically for young or first-time anglers.',
+  },
+  {
+    q: 'Do we keep the fish?',
+    a: 'Bass trips are typically catch and release. Walleye and perch trips are the ones to book if you want to take fish home for the table. Talk it through with the captain when you book.',
+  },
+  {
+    q: 'How do I lock in a date?',
+    a: 'Call or text the captain directly — that is the fastest way to see what is open. You can also send an email and he will get back to you with available dates.',
+  },
+];
 ---
-<Layout title="Charters" description="Guided fishing trips with N&T Outfitters — pricing and details for every charter.">
-  <section class="section">
-    <h1>Join Us For a Trip Today!</h1>
-    <p>
-      All trips are priced for up to two participants, unless otherwise noted in the trip
-      description. Children's trips are available for anglers 16 years old and under. To view
-      the full description of each trip, click Book Now and browse available dates.
-    </p>
+
+<Layout
+  title="Charters &amp; Rates"
+  description="Guided bass, walleye, and perch charters across Michigan. Half day and full day trips, rates, what's included, and answers to common questions."
+  image="/images/hero-1.jpg"
+>
+  <section class="page-hero">
+    <div class="page-hero-media">
+      <img src="/images/hero-1.jpg" alt="" />
+    </div>
+    <div class="wrap">
+      <p class="eyebrow eyebrow-light">Charters &amp; Rates</p>
+      <h1>Join Us For a Trip Today</h1>
+      <p>
+        All trips are priced for up to two participants unless otherwise noted. Children's trips
+        are available for anglers 16 years old and under. Call or text
+        <a href={site.phoneHref}>{site.phone}</a> to check open dates.
+      </p>
+    </div>
+  </section>
+
+  {
+    byGroup.map(({ group, items }, i) => (
+      <section class={`section${i % 2 === 1 ? ' section-soft' : ''}`}>
+        <div class="wrap">
+          <div class="section-head">
+            <p class="eyebrow">{group}</p>
+            <h2>{groupBlurbs[group]}</h2>
+          </div>
+          <div class="trip-grid">
+            {items.map((trip) => (
+              <TripCard trip={trip} />
+            ))}
+          </div>
+        </div>
+      </section>
+    ))
+  }
+
+  <section class="section section-pine">
+    <div class="wrap">
+      <div class="split">
+        <div>
+          <p class="eyebrow eyebrow-light">Included</p>
+          <h2>What Comes With the Trip</h2>
+          <ul class="checklist">
+            {included.map((item) => <li>{item}</li>)}
+          </ul>
+        </div>
+        <div>
+          <p class="eyebrow eyebrow-light">Bring Along</p>
+          <h2>What to Pack</h2>
+          <ul class="checklist">
+            {bring.map((item) => <li>{item}</li>)}
+          </ul>
+        </div>
+      </div>
+    </div>
   </section>
 
   <section class="section">
-    <h2>Our Services</h2>
-    <div class="trip-grid">
-      {trips.map((trip) => (
-        <div class="trip-card">
-          <h3>{trip.name}</h3>
-          <p class="trip-meta">{trip.duration}</p>
-          <p class="trip-price">{trip.price}</p>
-          <a href={bookingHref(trip.name)} class="btn btn-primary">
-            {trip.requestOnly ? 'Request to Book' : 'Book Now'}
-          </a>
-        </div>
-      ))}
+    <div class="wrap-narrow">
+      <div class="section-head section-head-center">
+        <p class="eyebrow">Good to Know</p>
+        <h2>Frequently Asked</h2>
+      </div>
+      <div class="faq">
+        {
+          faqs.map((f) => (
+            <details>
+              <summary>{f.q}</summary>
+              <div class="faq-answer">
+                <p>{f.a}</p>
+              </div>
+            </details>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-band">
+    <div class="cta-band-media">
+      <img src="/images/gallery-05.jpg" alt="" loading="lazy" />
+    </div>
+    <div class="wrap">
+      <p class="eyebrow eyebrow-light">Ready When You Are</p>
+      <h2>Check Open Dates</h2>
+      <p>
+        Give {site.captainShort} a call or a text with the trip you want and a couple of dates
+        that work. He'll confirm what's open and get you on the calendar.
+      </p>
+      <div class="btn-row">
+        <a href={site.phoneHref} class="btn btn-primary">Call {site.phone}</a>
+        <a href={mailto('Fishing trip inquiry')} class="btn btn-ghost">Email an Inquiry</a>
+      </div>
     </div>
   </section>
 </Layout>

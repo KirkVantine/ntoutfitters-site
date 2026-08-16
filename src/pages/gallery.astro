@@ -1,16 +1,130 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import { site, mailto } from '../data/site';
 
+// 11 photos migrated from the live site. gallery-05 is the only landscape
+// shot in the set, so it spans two columns instead of being cropped square.
 const photos = Array.from({ length: 11 }, (_, i) => {
   const n = String(i + 1).padStart(2, '0');
-  return `/images/gallery-${n}.jpg`;
+  return { src: `/images/gallery-${n}.jpg`, wide: n === '05' };
 });
 ---
-<Layout title="Gallery" description="Photos from N&T Outfitters guided fishing charters around Michigan.">
-  <h1>Gallery</h1>
-  <div class="gallery-grid">
-    {photos.map((src) => (
-      <img src={src} alt="N&T Outfitters fishing trip photo" loading="lazy" />
-    ))}
+
+<Layout
+  title="Gallery"
+  description="Photos from N&T Outfitters guided fishing charters — smallmouth bass, walleye, and days on the water across Michigan."
+  image="/images/gallery-01.jpg"
+>
+  <section class="page-hero">
+    <div class="page-hero-media">
+      <img src="/images/gallery-05.jpg" alt="" />
+    </div>
+    <div class="wrap">
+      <p class="eyebrow eyebrow-light">Gallery</p>
+      <h1>Days on the Water</h1>
+      <p>
+        Smallmouth, walleye, and the occasional personal best. Tap any photo to see it full
+        size.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="gallery-grid">
+        {
+          photos.map((photo, i) => (
+            <button
+              type="button"
+              class={`gallery-item${photo.wide ? ' is-wide' : ''}`}
+              data-lightbox={i}
+            >
+              {/* The button carries the label, so the image itself is marked
+                  decorative to avoid a screen reader announcing both. */}
+              <img src={photo.src} alt="" loading="lazy" decoding="async" />
+              <span class="visually-hidden">
+                View photo {i + 1} of {photos.length} — a fish caught on an N&amp;T Outfitters
+                charter
+              </span>
+            </button>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-band">
+    <div class="cta-band-media">
+      <img src="/images/hero-2.jpg" alt="" loading="lazy" />
+    </div>
+    <div class="wrap">
+      <p class="eyebrow eyebrow-light">Your Turn</p>
+      <h2>Get in the Next Photo</h2>
+      <p>Pick a trip, pick a date, and let's go put a bend in a rod.</p>
+      <div class="btn-row">
+        <a href="/charters" class="btn btn-primary">See Trips &amp; Rates</a>
+        <a href={mailto('Fishing trip inquiry')} class="btn btn-ghost">Email {site.captainShort}</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="lightbox" data-lightbox-modal role="dialog" aria-modal="true" aria-label="Photo viewer">
+    <button type="button" class="lightbox-close" data-lightbox-close aria-label="Close">&times;</button>
+    <button type="button" class="lightbox-nav lightbox-prev" data-lightbox-prev aria-label="Previous photo">&#8249;</button>
+    <img data-lightbox-image src="" alt="" />
+    <button type="button" class="lightbox-nav lightbox-next" data-lightbox-next aria-label="Next photo">&#8250;</button>
   </div>
 </Layout>
+
+<script>
+  // Lightbox. Progressive enhancement — without JS the grid is still a
+  // perfectly good set of photos, they just don't zoom.
+  const modal = document.querySelector<HTMLElement>('[data-lightbox-modal]');
+  const image = document.querySelector<HTMLImageElement>('[data-lightbox-image]');
+  const items = Array.from(document.querySelectorAll<HTMLButtonElement>('[data-lightbox]'));
+
+  if (modal && image && items.length) {
+    const sources = items.map((el) => el.querySelector('img')?.src ?? '');
+    let index = 0;
+    let lastFocused: HTMLElement | null = null;
+
+    const show = (i: number) => {
+      index = (i + sources.length) % sources.length;
+      image.src = sources[index];
+      image.alt = `Photo ${index + 1} of ${sources.length}`;
+    };
+
+    const open = (i: number) => {
+      lastFocused = document.activeElement as HTMLElement;
+      show(i);
+      modal.classList.add('is-open');
+      // Stop the page behind the overlay from scrolling on touch devices.
+      document.body.style.overflow = 'hidden';
+      modal.querySelector<HTMLElement>('[data-lightbox-close]')?.focus();
+    };
+
+    const close = () => {
+      modal.classList.remove('is-open');
+      document.body.style.overflow = '';
+      lastFocused?.focus();
+    };
+
+    items.forEach((el, i) => el.addEventListener('click', () => open(i)));
+
+    modal.querySelector('[data-lightbox-close]')?.addEventListener('click', close);
+    modal.querySelector('[data-lightbox-prev]')?.addEventListener('click', () => show(index - 1));
+    modal.querySelector('[data-lightbox-next]')?.addEventListener('click', () => show(index + 1));
+
+    // Clicking the backdrop (but not the photo or the buttons) closes.
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) close();
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (!modal.classList.contains('is-open')) return;
+      if (e.key === 'Escape') close();
+      if (e.key === 'ArrowLeft') show(index - 1);
+      if (e.key === 'ArrowRight') show(index + 1);
+    });
+  }
+</script>
