@@ -506,12 +506,45 @@ p {
   }
 }
 
-@media (max-width: 400px) {
+/* Below ~480px the brand tagline plus the hamburger no longer fit on one
+   row, and the header silently wraps to double height with the toggle
+   stranded under the logo. The tagline is the least useful thing in that
+   row — the logo and the page itself already say what this is. */
+@media (max-width: 480px) {
+  .brand img {
+    width: 40px;
+    height: 40px;
+  }
+
   .brand-title {
     font-size: 1.2rem;
   }
+
+  .brand-sub {
+    display: none;
+  }
+
+  /* The sticky bottom bar carries Call Now, so the header number is
+     redundant at this width. */
   .header-phone {
     display: none;
+  }
+}
+
+/* Very narrow phones (320px): drop the Menu label and keep the icon.
+   Clipped rather than display:none so the button keeps its accessible name. */
+@media (max-width: 360px) {
+  .nav-toggle {
+    padding: 0.5rem 0.75rem;
+  }
+
+  .nav-toggle-text {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
   }
 }
 
