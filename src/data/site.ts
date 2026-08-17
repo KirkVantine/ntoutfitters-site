@@ -5,7 +5,11 @@ export const site = {
   name: 'N&T Outfitters',
   legalName: 'N&T Outfitters LLC',
   tagline: 'Guided Fishing Charters',
+  /** Full name with title — headings, first mentions, link previews. */
   captain: 'Captain Nathaniel TerBush',
+  /** Bare name, for structured data where the title isn't part of the name. */
+  captainName: 'Nathaniel TerBush',
+  /** Conversational, for repeat mentions where the full name would read stiff. */
   captainShort: 'Captain Nathaniel',
   phone: '734-717-0773',
   phoneHref: 'tel:+17347170773',

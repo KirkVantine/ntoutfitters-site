@@ -11,21 +11,45 @@ const boat = [
   { label: 'Electronics', value: 'Garmin sonar and mapping' },
   { label: 'Capacity', value: 'Up to 2 anglers plus the captain' },
 ];
+
+// Standalone Person entity, linked to the business. This is what lets a
+// search for "Nathaniel TerBush" resolve to him rather than just to the
+// company name.
+const personLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: site.captainName,
+  jobTitle: 'Charter Captain',
+  description: `Owner and guide of ${site.legalName}, running guided bass and walleye charters across ${site.region}.`,
+  image: new URL('/images/captain.jpg', Astro.site ?? Astro.url).href,
+  telephone: site.phone,
+  email: site.email,
+  sameAs: [site.instagram],
+  worksFor: {
+    '@type': 'Organization',
+    name: site.legalName,
+    url: String(Astro.site ?? Astro.url.origin),
+  },
+};
 ---
 
+{/* Person markup so a search for his name surfaces this page directly. */}
 <Layout
-  title="About"
-  description={`Meet ${site.captain} of N&T Outfitters — guided bass and walleye fishing charters across Michigan.`}
+  title={`About ${site.captain}`}
+  description={`Meet ${site.captain} of N&T Outfitters — guided bass and walleye fishing charters across Lake St. Clair, the Detroit River, and Michigan.`}
   image="/images/captain.jpg"
 >
+  <script type="application/ld+json" slot="head" set:html={JSON.stringify(personLd)} />
   <section class="page-hero">
     <div class="page-hero-media">
       <img src="/images/hero-1.jpg" alt="" />
     </div>
     <div class="wrap">
       <p class="eyebrow eyebrow-light">About</p>
-      <h1>Meet Your Captain</h1>
-      <p>{site.captain} &middot; N&amp;T Outfitters LLC</p>
+      <h1>Meet Captain Nathaniel TerBush</h1>
+      <p>
+        Owner and guide, N&amp;T Outfitters LLC &middot; {site.region}
+      </p>
     </div>
   </section>
 
@@ -40,10 +64,10 @@ const boat = [
           />
         </div>
         <div class="prose">
-          <p class="eyebrow">Nathaniel TerBush</p>
-          <h2>Fishing His Whole Life</h2>
+          <p class="eyebrow">Your Guide</p>
+          <h2>Nathaniel TerBush</h2>
           <p class="lead">
-            Welcome to N&amp;T Outfitters. I'm Captain Nathaniel, and I've been fishing my whole
+            Welcome to N&amp;T Outfitters. I'm Nathaniel TerBush, and I've been fishing my whole
             life.
           </p>
           <p>

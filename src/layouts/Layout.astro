@@ -53,7 +53,11 @@ const jsonLd = {
   address: { '@type': 'PostalAddress', addressRegion: 'MI', addressCountry: 'US' },
   areaServed: site.areaServed.map((a) => ({ '@type': 'Place', name: a })),
   sameAs: [site.instagram],
-  employee: { '@type': 'Person', name: site.captain, jobTitle: 'Charter Captain' },
+  // Bare name here — schema.org Person.name is the name, not the honorific.
+  // Listing him as founder as well as employee is what ties searches for
+  // "Nathaniel TerBush" to the business.
+  founder: { '@type': 'Person', name: site.captainName, jobTitle: 'Charter Captain' },
+  employee: { '@type': 'Person', name: site.captainName, jobTitle: 'Charter Captain' },
 };
 ---
 
@@ -92,6 +96,9 @@ const jsonLd = {
     <meta name="twitter:card" content="summary_large_image" />
 
     <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+
+    <!-- Pages can add their own structured data or meta tags here. -->
+    <slot name="head" />
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
