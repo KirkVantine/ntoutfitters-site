@@ -795,9 +795,13 @@ main {
   box-shadow: var(--shadow-lg);
 }
 
+/* 4:3 rather than 16:10. Nearly every source photo is a 3:4 portrait phone
+   shot, and the wider the frame, the more of the top and bottom `cover` has
+   to throw away — which is exactly where people's heads are. Each card also
+   sets its own object-position; see the `focus` field in trips.ts. */
 .trip-photo {
   position: relative;
-  aspect-ratio: 16 / 10;
+  aspect-ratio: 4 / 3;
   background: var(--pine-tint);
 }
 
@@ -805,6 +809,8 @@ main {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  /* Fallback only — TripCard sets a per-photo focal point inline. */
+  object-position: center 25%;
 }
 
 .trip-tag {

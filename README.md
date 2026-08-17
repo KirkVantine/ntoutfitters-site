@@ -56,6 +56,14 @@ The copy is new, so a few operational claims need his sign-off. They're marked w
    175 Pro XS OptiMax, Minn Kota Raptor anchors, Garmin electronics. Worth a glance.
 7. **No testimonials yet.** Deliberately left out rather than invented. Real reviews are the
    single highest-value thing to add — even three or four with first names and a town.
+8. **Photos to ask him for.** Every photo was checked against the species its trip advertises.
+   The library is almost entirely smallmouth bass, with exactly **one walleye shot**
+   (`gallery-03.jpg`) and **no perch shot at all**. So:
+   - Both Detroit River walleye trips reuse the same walleye photo — it's the only one.
+   - The Perch trip shows the boat at sunrise rather than a bass, so the card isn't
+     advertising the wrong fish. Swap in a real perch photo the moment one exists.
+   - Highest-value asks: **perch**, **more walleye**, a **kids/family trip** shot, and any
+     photo with a client in it rather than the captain.
 
 ## Known gaps
 

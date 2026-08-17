@@ -15,7 +15,8 @@ const { trip, compact = false } = Astro.props;
   <div class="trip-photo">
     <img
       src={trip.image}
-      alt={`${trip.species} caught on the ${trip.water}`}
+      alt={trip.imageAlt}
+      style={`object-position: ${trip.focus}`}
       loading="lazy"
       decoding="async"
     />
