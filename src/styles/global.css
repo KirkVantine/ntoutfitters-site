@@ -802,10 +802,19 @@ main {
 .trip-photo {
   position: relative;
   aspect-ratio: 4 / 3;
+  overflow: hidden;
   background: var(--pine-tint);
 }
 
+/* Absolutely positioned, not just height:100%. A percentage height against a
+   parent that is itself sized by aspect-ratio is a cyclic dependency: the
+   image falls back to its natural height and then min-height:auto lets it
+   stretch the container, so the frame silently takes the photo's own ratio
+   and nothing ever gets cropped. Taking the image out of flow makes
+   aspect-ratio authoritative. */
 .trip-photo img {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -1029,9 +1038,13 @@ main {
   overflow: hidden;
   aspect-ratio: 3 / 4;
   display: block;
+  /* Same cyclic-dependency trap as .trip-photo — see the note there. */
+  position: relative;
 }
 
 .gallery-item img {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
