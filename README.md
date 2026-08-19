@@ -105,12 +105,41 @@ npm run build
 
 `dev` serves on http://localhost:4321; `build` outputs static files to `dist/`.
 
-## Deploying (Cloudflare Pages, free tier — same pattern as Dexter Lions)
+## Deploying (Cloudflare Workers static assets)
 
-1. Push this repo to GitHub.
-2. In Cloudflare: Workers & Pages → Create → Pages → Connect to Git → pick the repo.
-   Build command `npm run build`, build output directory `dist`.
-3. Once the deploy looks right, point `ntoutfitters.org`'s DNS at Cloudflare and cancel the Wix
-   plan. The registrar is Tucows/OpenSRS (not Wix) — Nathaniel will need his registrar login
-   (check purchase/renewal receipts) and will have to clear the `clientTransferProhibited` /
-   `clientUpdateProhibited` locks before any transfer or nameserver change.
+The repo is connected to a Cloudflare **Worker** — not Pages. Cloudflare's Git
+integration routes new projects to Workers with static assets now. Every push to
+`master` builds and deploys automatically and goes live in roughly two minutes.
+
+- Project: `ntoutfitters-site`
+- Preview URL: https://ntoutfitters-site.kirk-vantine.workers.dev
+- Build command `npm run build`, output directory `dist`
+
+The build is pure static output (no `_worker.js`), which matters for cost:
+requests to static assets are free and unlimited on Cloudflare's free plan. Only
+dynamic Worker invocations count against quota, and this site has none.
+
+### Custom domain
+
+Production domain is **ntcharters.com** (apex, no `www`). The `site` value in
+`astro.config.mjs` must always match it — it drives canonical tags, `og:url`, and
+the sitemap. If it points at the wrong domain, every page tells Google that the
+*other* domain is authoritative, which suppresses this one.
+
+To attach a domain already in the same Cloudflare account:
+Workers & Pages -> ntoutfitters-site -> Settings -> Domains & Routes -> Add ->
+Custom Domain. Cloudflare creates the DNS record and issues the TLS certificate.
+
+### Still to do on the domain move
+
+- Add `www.ntcharters.com` and redirect it to the apex so only one hostname is
+  canonical.
+- Move `ntoutfitters.org` into Cloudflare and 301 it to `ntcharters.com`. **Keep
+  renewing it** — it is on business cards, the Instagram bio, and the FishingBooker
+  listing. Capture every existing DNS record before changing nameservers: his email
+  is Google Workspace and lives in those MX/SPF/DKIM records.
+- Add `ntcharters.com` to Google Workspace as a domain alias so
+  `nathaniel@ntcharters.com` works. Until then the site correctly shows the
+  `@ntoutfitters.org` address.
+- Update the Google Business Profile, Instagram bio, and FishingBooker listing to
+  the new domain.
