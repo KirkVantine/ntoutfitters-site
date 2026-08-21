@@ -1,6 +1,6 @@
 ---
 import type { Trip } from '../data/trips';
-import { bookingHref } from '../data/site';
+import { bookNowHref, isExternalBooking } from '../data/site';
 
 interface Props {
   trip: Trip;
@@ -51,7 +51,12 @@ const { trip, compact = false } = Astro.props;
         <small>Rate</small>
         {trip.price}
       </p>
-      <a href={bookingHref(trip.name)} class="btn btn-primary btn-sm">
+      <a
+        href={bookNowHref(trip)}
+        class="btn btn-primary btn-sm"
+        target={isExternalBooking(trip) ? "_blank" : undefined}
+        rel={isExternalBooking(trip) ? "noopener noreferrer" : undefined}
+      >
         {trip.requestOnly ? 'Request' : 'Book Now'}
       </a>
     </div>

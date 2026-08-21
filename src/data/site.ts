@@ -54,3 +54,33 @@ export function bookingHref(tripName: string): string {
     ].join('\n'),
   );
 }
+
+/**
+ * Google Calendar appointment-schedule booking pages.
+ *
+ * Nathaniel connects Stripe to Google Calendar himself via OAuth — no API keys
+ * are involved and none belong in this repo. Once he sends the public booking
+ * link, drop it in `url` below and every "Book Now" button switches over at
+ * once. Until then all of them stay as pre-filled email inquiries, so the site
+ * is never in a broken half-state.
+ *
+ * If he sets up a separate schedule per trip, add them to `bySlug` keyed by the
+ * trip slug from trips.ts; anything not listed falls back to `url`.
+ */
+export const booking = {
+  url: null as string | null,
+  bySlug: {} as Record<string, string>,
+};
+
+/**
+ * The href for a trip's Book button: a real booking page when one is
+ * configured, otherwise the email fallback.
+ */
+export function bookNowHref(trip: { slug: string; name: string }): string {
+  return booking.bySlug[trip.slug] ?? booking.url ?? bookingHref(trip.name);
+}
+
+/** Booking pages are external; email links must not get target="_blank". */
+export function isExternalBooking(trip: { slug: string }): boolean {
+  return Boolean(booking.bySlug[trip.slug] ?? booking.url);
+}
