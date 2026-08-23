@@ -1,5 +1,6 @@
 ---
-import { site, mailto } from '../data/site';
+import { site, socials, mailto } from '../data/site';
+import SocialLinks from '../components/SocialLinks.astro';
 
 interface Props {
   title: string;
@@ -52,7 +53,7 @@ const jsonLd = {
   email: site.email,
   address: { '@type': 'PostalAddress', addressRegion: 'MI', addressCountry: 'US' },
   areaServed: site.areaServed.map((a) => ({ '@type': 'Place', name: a })),
-  sameAs: [site.instagram],
+  sameAs: socials.map((s) => s.url),
   // Bare name here — schema.org Person.name is the name, not the honorific.
   // Listing him as founder as well as employee is what ties searches for
   // "Nathaniel TerBush" to the business.
@@ -162,14 +163,7 @@ const jsonLd = {
               every skill level, run by {site.captain}.
             </p>
             <div class="social-row">
-              <a href={site.instagram} target="_blank" rel="noopener noreferrer">
-                <span class="visually-hidden">N&amp;T Outfitters on Instagram</span>
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
-                  <rect x="2" y="2" width="20" height="20" rx="5"></rect>
-                  <circle cx="12" cy="12" r="4"></circle>
-                  <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"></circle>
-                </svg>
-              </a>
+              <SocialLinks />
               <a href={site.phoneHref}>
                 <span class="visually-hidden">Call {site.phone}</span>
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
@@ -200,11 +194,7 @@ const jsonLd = {
             <ul class="footer-links">
               <li><a href={site.phoneHref}>{site.phone}</a></li>
               <li><a href={mailto('Fishing trip inquiry')}>{site.email}</a></li>
-              <li>
-                <a href={site.instagram} target="_blank" rel="noopener noreferrer">
-                  {site.instagramHandle}
-                </a>
-              </li>
+              <SocialLinks variant="list" />
             </ul>
             <p style="margin-top:1rem">
               Booking for the {new Date().getFullYear()} season. Call or text for open dates.

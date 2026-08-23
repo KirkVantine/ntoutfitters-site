@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import { site, mailto } from '../data/site';
+import { site, socials, mailto } from '../data/site';
+import SocialLinks from '../components/SocialLinks.astro';
 
 // Read off the boat in the captain's own photos (public/images/captain.jpg).
 const boat = [
@@ -24,7 +25,7 @@ const personLd = {
   image: new URL('/images/captain.jpg', Astro.site ?? Astro.url).href,
   telephone: site.phone,
   email: site.email,
-  sameAs: [site.instagram],
+  sameAs: socials.map((s) => s.url),
   worksFor: {
     '@type': 'Organization',
     name: site.legalName,
@@ -136,12 +137,7 @@ const personLd = {
       <ul class="contact-lines">
         <li>Phone &amp; text &mdash; <a href={site.phoneHref}>{site.phone}</a></li>
         <li>Email &mdash; <a href={mailto('Hello from the website')}>{site.email}</a></li>
-        <li>
-          Instagram &mdash;
-          <a href={site.instagram} target="_blank" rel="noopener noreferrer">
-            {site.instagramHandle}
-          </a>
-        </li>
+        <SocialLinks variant="list" />
       </ul>
 
       <div class="btn-row">

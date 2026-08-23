@@ -15,8 +15,6 @@ export const site = {
   phoneHref: 'tel:+17347170773',
   smsHref: 'sms:+17347170773',
   email: 'nathanielterbush@ntoutfitters.org',
-  instagram: 'https://www.instagram.com/nt_outfitters/',
-  instagramHandle: '@nt_outfitters',
   region: 'Southeast Michigan',
   areaServed: [
     'Lake St. Clair',
@@ -26,6 +24,33 @@ export const site = {
     'Northern Michigan',
   ],
 } as const;
+
+/**
+ * Social accounts. Adding a platform here wires it into the footer, the
+ * About page, and the `sameAs` structured data all at once — those used to
+ * hardcode Instagram separately in four places.
+ *
+ * `sameAs` is what lets Google tie these profiles to the business as one
+ * entity, so keep every real profile listed even if it is quiet.
+ *
+ * NOTE: the Facebook page has no username yet, so its URL is the numeric
+ * profile.php form. Once Nathaniel claims a username to match the new domain
+ * this becomes https://www.facebook.com/<username> — change it here only.
+ */
+export const socials = [
+  {
+    name: 'Instagram',
+    handle: '@nt_outfitters',
+    url: 'https://www.instagram.com/nt_outfitters/',
+  },
+  {
+    name: 'Facebook',
+    handle: 'N&T Outfitters',
+    // Stripped of the mibextid / rdid / share_url tracking parameters that
+    // come attached to a Facebook "share" link.
+    url: 'https://www.facebook.com/profile.php?id=61577041231709',
+  },
+] as const;
 
 /** Pre-filled booking email. `subject` keeps inquiries sortable in his inbox. */
 export function mailto(subject: string, body?: string): string {
