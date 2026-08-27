@@ -3,15 +3,12 @@ import Layout from '../layouts/Layout.astro';
 import { site, socials, mailto } from '../data/site';
 import SocialLinks from '../components/SocialLinks.astro';
 
-// Read off the boat in the captain's own photos (public/images/captain.jpg).
-const boat = [
-  { label: 'Boat', value: 'Nitro Z18' },
-  { label: 'Power', value: 'Mercury 175 Pro XS OptiMax' },
-  { label: 'Anchoring', value: 'Minn Kota Raptor shallow-water anchors' },
-  { label: 'Trolling motor', value: 'Minn Kota bow mount' },
-  { label: 'Electronics', value: 'Garmin sonar and mapping' },
-  { label: 'Capacity', value: 'Up to 2 anglers plus the captain' },
-];
+// TODO(nathaniel): he has a NEW boat as of Aug 2026 and is sending details and
+// photos. The previous specs (Nitro Z18 / Mercury 175 Pro XS) were read off his
+// old photos and are no longer true, so they are removed rather than left live.
+// Restore this table once the new boat's make, model, power and capacity are
+// confirmed.
+const boat: { label: string; value: string }[] = [];
 
 // Standalone Person entity, linked to the business. This is what lets a
 // search for "Nathaniel TerBush" resolve to him rather than just to the
@@ -60,7 +57,7 @@ const personLd = {
         <div class="split-media">
           <img
             src="/images/captain.jpg"
-            alt={`${site.captain} on his Nitro Z18 bass boat`}
+            alt={`${site.captain} aboard his boat`}
             loading="lazy"
           />
         </div>
@@ -98,24 +95,27 @@ const personLd = {
           <p class="eyebrow">The Rig</p>
           <h2>What You'll Fish From</h2>
           <p>
-            A Nitro Z18 set up to fish hard and cover water. Shallow-water anchors hold you on a
-            spot when the wind is up, and the electronics take the guesswork out of finding fish.
+            A modern bass boat rigged to fish hard and cover water, with shallow-water anchors
+            to hold a spot when the wind is up and electronics that take the guesswork out of
+            finding fish.
           </p>
-          <ul class="trip-facts" style="margin-top:1.5rem;border-top:none;padding-top:0">
-            {
-              boat.map((row) => (
-                <li>
-                  <span class="trip-fact-label">{row.label}</span>
-                  <span class="trip-fact-value">{row.value}</span>
-                </li>
-              ))
-            }
-          </ul>
+          {
+            boat.length > 0 && (
+              <ul class="trip-facts" style="margin-top:1.5rem;border-top:none;padding-top:0">
+                {boat.map((row) => (
+                  <li>
+                    <span class="trip-fact-label">{row.label}</span>
+                    <span class="trip-fact-value">{row.value}</span>
+                  </li>
+                ))}
+              </ul>
+            )
+          }
         </div>
         <div class="split-media">
           <img
             src="/images/hero-2.jpg"
-            alt="The Nitro Z18 on a Michigan lake at sunrise"
+            alt="On the water at sunrise"
             loading="lazy"
           />
         </div>

@@ -100,7 +100,7 @@ export const trips: Trip[] = [
     duration: '6 hours',
     price: 'From $500',
     blurb:
-      'Big water, big smallmouth. Saginaw Bay rewards covering ground, and the Nitro gets you to the fish quickly.',
+      'Big water, big smallmouth. Saginaw Bay rewards covering ground, and the boat gets you to the fish quickly.',
     image: '/images/gallery-02.jpg',
     imageAlt: 'A heavy smallmouth bass held up close to the camera',
     focus: 'center 8%',

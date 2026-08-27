@@ -4,7 +4,7 @@ Rebuild of [ntoutfitters.org](https://www.ntoutfitters.org/), currently hosted o
 photos, and copy were migrated from the live public site (no Wix login used). Same stack and
 deploy pattern as the Dexter Lions Club site.
 
-Owner: **Nathaniel TerBush** — 734-717-0773 — nathanielterbush@ntoutfitters.org
+Owner: **Nathaniel TerBush** — 734-717-0773 — nterbush25@gmail.com
 
 ## What's here
 
@@ -52,8 +52,12 @@ The copy is new, so a few operational claims need his sign-off. They're marked w
    from the live site. If he holds a USCG license and liability insurance, say so — it is one
    of the strongest trust signals a charter site can have.
 5. **Sponsorship season year.** The tier copy is year-neutral now; the live site said "2025".
-6. **Boat specs** (`src/pages/about.astro`) were read off his own photos — Nitro Z18, Mercury
-   175 Pro XS OptiMax, Minn Kota Raptor anchors, Garmin electronics. Worth a glance.
+6. **Boat specs — REMOVED, awaiting new details.** He has a **new boat** as of Aug 2026.
+   The old Nitro Z18 / Mercury 175 Pro XS specs were read off his earlier photos and are no
+   longer true, so every reference was stripped from the About page, the home page feature
+   card, and a trip blurb rather than left live. Restore the spec table in
+   `src/pages/about.astro` once he sends make, model, power, and capacity. **The photos
+   still show the old boat** and need replacing too.
 7. **No testimonials yet.** Deliberately left out rather than invented. Real reviews are the
    single highest-value thing to add — even three or four with first names and a town.
 8. **Photos to ask him for.** Every photo was checked against the species its trip advertises.
@@ -67,15 +71,18 @@ The copy is new, so a few operational claims need his sign-off. They're marked w
 
 ## Known gaps
 
-- **Live booking & payments.** The Wix site uses **Wix Bookings** (per-trip calendars, deposits,
-  "Request to Book") and a cart/checkout. A static site can't replicate real-time scheduling.
-  Every booking button here is a `mailto:` pre-filled with the trip name and the questions he
-  always ends up asking (dates, party size, experience level), plus click-to-call everywhere.
-  Before launch, decide whether to:
-  - keep the call/email flow permanently (simplest, no fees, and how a lot of charter captains
-    actually operate), or
-  - integrate a real scheduler (Acuity, FareHarbor, or Calendly + Stripe) to restore self-serve
-    booking with deposits.
+- **Live booking & payments — blocked on plan choice.** Nathaniel has a Stripe account, but
+  his Google account is a **free @gmail.com**, and paid appointment bookings in Google
+  Calendar require a Google Workspace subscription. So the intended Google Calendar + Stripe
+  path is not available as-is. Options: pay for Google Workspace Individual, or use Square
+  Appointments' free tier (which supports deposits, buffers and lead times but replaces
+  Stripe). Until one is chosen, every Book button stays a pre-filled `mailto:`. The plumbing
+  is ready — set `booking.url` in `src/data/site.ts` and all ten buttons switch at once.
+
+  His confirmed rules, for whichever tool is used: **$100 deposit**, **24-48h minimum notice**,
+  **30 min buffer between trips**, **max 2 trips/day**, captain has final say on weather,
+  deposit refundable if the captain cancels and forfeited if the customer cancels without
+  justification.
 - **Sponsorship form.** The live site has a Wix contact form; replaced with a `mailto:` button.
   [Formspree](https://formspree.io) or [Web3Forms](https://web3forms.com) are the usual next
   step if a real form is wanted.
@@ -83,9 +90,13 @@ The copy is new, so a few operational claims need his sign-off. They're marked w
   (`IMG_20220529_211717_452_Original.jpg`) returned `403 Forbidden` from Wix's CDN at every size
   tried. The other 11 are in `public/images/gallery-*.jpg`. Re-export it from the Wix media
   library once you have account access.
-- **Email stays on Google Workspace.** MX records for `ntoutfitters.org` point to Google,
-  separate from Wix hosting. Don't touch MX/SPF records when moving DNS — only the
-  A/nameserver records need to change.
+- **Email is a free Gmail account, not Workspace.** As of Aug 2026 Nathaniel closed
+  `nathanielterbush@ntoutfitters.org` — it was a paid Wix mailbox — and now uses
+  `nterbush25@gmail.com`. Two consequences:
+  - Moving `ntoutfitters.org` into Cloudflare no longer risks breaking his email, since
+    nothing is delivered there any more. Earlier notes in this file said otherwise.
+  - A `nathaniel@ntcharters.com` address would need **Cloudflare Email Routing** (free,
+    forwards to his Gmail). A free Gmail account cannot host a custom domain by itself.
 
 ## Running locally
 

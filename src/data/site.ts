@@ -14,7 +14,7 @@ export const site = {
   phone: '734-717-0773',
   phoneHref: 'tel:+17347170773',
   smsHref: 'sms:+17347170773',
-  email: 'nathanielterbush@ntoutfitters.org',
+  email: 'nterbush25@gmail.com',
   region: 'Southeast Michigan',
   areaServed: [
     'Lake St. Clair',
