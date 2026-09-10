@@ -2,22 +2,23 @@
 import Layout from '../layouts/Layout.astro';
 import { site, mailto } from '../data/site';
 
-// 11 photos migrated from the live site. gallery-05 is the only landscape
-// shot in the set, so it spans two columns instead of being cropped square.
-const photos = Array.from({ length: 11 }, (_, i) => {
+// Refreshed Sep 2026 from Nathaniel's own library. Most of these show clients
+// rather than the captain, which the old set never did. g-07 is the only
+// landscape frame, so it spans two columns instead of being cropped square.
+const photos = Array.from({ length: 25 }, (_, i) => {
   const n = String(i + 1).padStart(2, '0');
-  return { src: `/images/gallery-${n}.jpg`, wide: n === '05' };
+  return { src: `/images/g-${n}.jpg`, wide: n === '07' };
 });
 ---
 
 <Layout
   title="Gallery"
   description="Photos from N&T Outfitters guided fishing charters — smallmouth bass, walleye, and days on the water across Michigan."
-  image="/images/gallery-01.jpg"
+  image="/images/trip-kids.jpg"
 >
   <section class="page-hero">
     <div class="page-hero-media">
-      <img src="/images/gallery-05.jpg" alt="" />
+      <img src="/images/boat-running.jpg" alt="" />
     </div>
     <div class="wrap">
       <p class="eyebrow eyebrow-light">Gallery</p>
@@ -55,7 +56,7 @@ const photos = Array.from({ length: 11 }, (_, i) => {
 
   <section class="cta-band">
     <div class="cta-band-media">
-      <img src="/images/hero-2.jpg" alt="" loading="lazy" />
+      <img src="/images/boat-profile.jpg" alt="" loading="lazy" />
     </div>
     <div class="wrap">
       <p class="eyebrow eyebrow-light">Your Turn</p>

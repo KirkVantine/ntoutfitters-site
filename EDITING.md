@@ -114,3 +114,22 @@ one, and revert. The site rebuilds from that automatically.
 If the site stops updating entirely, the build probably failed. Cloudflare
 dashboard → Workers & Pages → ntoutfitters-site → the failed deploy shows the
 error. Running `npm run build` locally reproduces it and usually names the line.
+
+---
+
+## Adding photos Nathaniel sends
+
+His phone photos arrive as **HEIC**, which browsers do not display and which are 3-5 MB each.
+They must be converted and resized before they go anywhere near `public/images/`.
+
+Note that `sharp` cannot decode iPhone HDR HEIC (they carry Apple gain-map extensions and it
+fails with "bad seek"), but Windows can. Convert with Windows' own decoder first, then resize:
+
+```bash
+node -e "const s=require('sharp');s('in.jpg').resize({width:1400,height:1400,fit:'inside'}).jpeg({quality:79,mozjpeg:true}).toFile('public/images/out.jpg')"
+```
+
+Naming: `g-NN.jpg` for gallery photos, `trip-*.jpg` for trip cards, `boat-*.jpg` for the boat.
+Gallery count is set by the `length` value at the top of `src/pages/gallery.astro`.
+
+**Never commit the raw camera files.** They were 144 MB before processing and 6.4 MB after.

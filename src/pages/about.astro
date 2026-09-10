@@ -3,12 +3,15 @@ import Layout from '../layouts/Layout.astro';
 import { site, socials, mailto } from '../data/site';
 import SocialLinks from '../components/SocialLinks.astro';
 
-// TODO(nathaniel): he has a NEW boat as of Aug 2026 and is sending details and
-// photos. The previous specs (Nitro Z18 / Mercury 175 Pro XS) were read off his
-// old photos and are no longer true, so they are removed rather than left live.
-// Restore this table once the new boat's make, model, power and capacity are
-// confirmed.
-const boat: { label: string; value: string }[] = [];
+// Confirmed by Nathaniel, Sep 2026. The "2075 PRO-V BASS" and LUND decals are
+// legible in public/images/boat-profile.jpg.
+const boat = [
+  { label: 'Boat', value: '2025 Lund 2075 Pro-V Bass XS' },
+  { label: 'Power', value: 'Mercury 250 Pro XS' },
+  { label: 'Electronics', value: 'Three large-screen Lowrance fish finders' },
+  { label: 'Trolling motor', value: 'Bow-mount, with shallow-water anchors' },
+  { label: 'Capacity', value: 'Up to 4 guests plus the captain' },
+];
 
 // Standalone Person entity, linked to the business. This is what lets a
 // search for "Nathaniel TerBush" resolve to him rather than just to the
@@ -40,7 +43,7 @@ const personLd = {
   <script type="application/ld+json" slot="head" set:html={JSON.stringify(personLd)} />
   <section class="page-hero">
     <div class="page-hero-media">
-      <img src="/images/hero-1.jpg" alt="" />
+      <img src="/images/boat-running.jpg" alt="" />
     </div>
     <div class="wrap">
       <p class="eyebrow eyebrow-light">About</p>
@@ -95,9 +98,9 @@ const personLd = {
           <p class="eyebrow">The Rig</p>
           <h2>What You'll Fish From</h2>
           <p>
-            A modern bass boat rigged to fish hard and cover water, with shallow-water anchors
-            to hold a spot when the wind is up and electronics that take the guesswork out of
-            finding fish.
+            A 2025 Lund 2075 Pro-V Bass XS with a 250 horsepower Mercury Pro XS on the back.
+            Three large-screen fish finders take the guesswork out of locating fish, and there
+            is room for four guests to fish comfortably without crowding each other.
           </p>
           {
             boat.length > 0 && (
@@ -114,8 +117,8 @@ const personLd = {
         </div>
         <div class="split-media">
           <img
-            src="/images/hero-2.jpg"
-            alt="On the water at sunrise"
+            src="/images/boat-profile.jpg"
+            alt="The 2025 Lund 2075 Pro-V Bass XS on the water"
             loading="lazy"
           />
         </div>

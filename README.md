@@ -60,14 +60,11 @@ The copy is new, so a few operational claims need his sign-off. They're marked w
    still show the old boat** and need replacing too.
 7. **No testimonials yet.** Deliberately left out rather than invented. Real reviews are the
    single highest-value thing to add — even three or four with first names and a town.
-8. **Photos to ask him for.** Every photo was checked against the species its trip advertises.
-   The library is almost entirely smallmouth bass, with exactly **one walleye shot**
-   (`gallery-03.jpg`) and **no perch shot at all**. So:
-   - Both Detroit River walleye trips reuse the same walleye photo — it's the only one.
-   - The Perch trip shows the boat at sunrise rather than a bass, so the card isn't
-     advertising the wrong fish. Swap in a real perch photo the moment one exists.
-   - Highest-value asks: **perch**, **more walleye**, a **kids/family trip** shot, and any
-     photo with a client in it rather than the captain.
+8. **Photos — refreshed Sep 2026.** Nathaniel supplied ~65 originals (mostly iPhone HEIC).
+   These were converted, resized and re-encoded; the raw uploads are **not** in the repo, and
+   must never be committed (144 MB vs 6.4 MB after processing). Every trip photo was checked
+   against the species it advertises. Remaining gap: **still no perch photo**, so the Perch
+   trip shows sunrise from the deck rather than the wrong fish.
 
 ## Known gaps
 
@@ -86,10 +83,10 @@ The copy is new, so a few operational claims need his sign-off. They're marked w
 - **Sponsorship form.** The live site has a Wix contact form; replaced with a `mailto:` button.
   [Formspree](https://formspree.io) or [Web3Forms](https://web3forms.com) are the usual next
   step if a real form is wanted.
-- **One gallery photo missing.** 12 photos are on the live Gallery page; one
-  (`IMG_20220529_211717_452_Original.jpg`) returned `403 Forbidden` from Wix's CDN at every size
-  tried. The other 11 are in `public/images/gallery-*.jpg`. Re-export it from the Wix media
-  library once you have account access.
+- **Old Wix photos retired.** The original 11 `gallery-*.jpg` plus `hero-1/2.jpg` showed the
+  previous boat and were removed in favour of Nathaniel's own library. `captain.jpg` is kept
+  because it is genuinely him, though the boat behind him is the old one — worth replacing with
+  a current portrait when one exists.
 - **Email is a free Gmail account, not Workspace.** As of Aug 2026 Nathaniel closed
   `nathanielterbush@ntoutfitters.org` — it was a paid Wix mailbox — and now uses
   `nterbush25@gmail.com`. Two consequences:

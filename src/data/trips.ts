@@ -34,11 +34,10 @@ export interface Trip {
 // captain before publishing. The blurbs are new copy written for this rebuild
 // and should get his sign-off too.
 //
-// PHOTOS: every image below was checked against the species it advertises.
-// The photo library is almost entirely smallmouth bass — there is exactly one
-// walleye shot (gallery-03) and no perch shot at all, so the perch trip uses a
-// boat photo rather than showing the wrong fish. See README for what to ask
-// Nathaniel to send.
+// PHOTOS: refreshed Sep 2026 from Nathaniel's own library and checked against the
+// species each trip advertises. Walleye trips now show real walleye, and most cards
+// show clients rather than the captain. No perch photo exists yet, so the perch trip
+// shows sunrise from the deck rather than the wrong fish.
 export const trips: Trip[] = [
   {
     slug: 'lake-st-clair-bass',
@@ -50,9 +49,9 @@ export const trips: Trip[] = [
     price: 'From $500',
     blurb:
       'A full day on one of the best smallmouth fisheries in the country. Clear water, hard-pulling fish, and plenty of room to move if the wind changes.',
-    image: '/images/gallery-01.jpg',
-    imageAlt: 'A pair of Lake St. Clair smallmouth bass held up on the dock',
-    focus: 'center 18%',
+    image: '/images/trip-st-clair.jpg',
+    imageAlt: 'A client with a smallmouth bass caught aboard the Lund',
+    focus: 'center 20%',
     group: 'Signature Trips',
     featured: true,
   },
@@ -68,9 +67,9 @@ export const trips: Trip[] = [
       'The Detroit River walleye run is a Michigan tradition. Vertical jigging in current, with fast action when the fish are stacked up.',
     // The only walleye photo in the library, and the shoreline behind it
     // matches the river.
-    image: '/images/gallery-03.jpg',
-    imageAlt: 'A walleye caught on the Detroit River',
-    focus: 'center 26%',
+    image: '/images/trip-walleye.jpg',
+    imageAlt: 'Clients aboard with a catch of walleye on the deck',
+    focus: 'center 58%',
     group: 'Signature Trips',
     featured: true,
   },
@@ -85,9 +84,9 @@ export const trips: Trip[] = [
     blurb:
       'Protected inland water close to home, which makes it the right call on a windy day and a great place to learn. A full day at the friendliest price on the board.',
     // Wooded inland shoreline, which reads as the chain rather than big water.
-    image: '/images/gallery-05.jpg',
-    imageAlt: 'A smallmouth bass caught on the Huron River Chain of Lakes',
-    focus: 'center 30%',
+    image: '/images/trip-huron-chain.jpg',
+    imageAlt: 'A client holding a largemouth bass on an inland lake',
+    focus: 'center 8%',
     group: 'Signature Trips',
     featured: true,
   },
@@ -101,9 +100,9 @@ export const trips: Trip[] = [
     price: 'From $500',
     blurb:
       'Big water, big smallmouth. Saginaw Bay rewards covering ground, and the boat gets you to the fish quickly.',
-    image: '/images/gallery-02.jpg',
-    imageAlt: 'A heavy smallmouth bass held up close to the camera',
-    focus: 'center 8%',
+    image: '/images/trip-saginaw.jpg',
+    imageAlt: 'A client with a heavy smallmouth bass on open water',
+    focus: 'center 25%',
     group: 'Signature Trips',
   },
   {
@@ -117,8 +116,8 @@ export const trips: Trip[] = [
       'Steady bites, simple technique, and the best eating fish in the state. A favorite with families and first-timers.',
     // No perch photo exists yet, so this shows the boat rather than a bass.
     // Swap in a real perch shot as soon as one is available.
-    image: '/images/hero-2.jpg',
-    imageAlt: 'The N&T Outfitters boat on a calm Michigan lake at sunrise',
+    image: '/images/boat-deck-sunrise.jpg',
+    imageAlt: 'Sunrise over the water from the deck of the boat',
     focus: 'center 50%',
     group: 'Family & Getaways',
   },
@@ -131,9 +130,9 @@ export const trips: Trip[] = [
     price: '$100',
     blurb:
       'A patient, hands-on introduction for anglers 16 and under. Knot tying, casting, and reading the water — plus catching fish.',
-    image: '/images/gallery-06.jpg',
-    imageAlt: 'A young angler holding up a smallmouth bass from the bow of the boat',
-    focus: 'center 42%',
+    image: '/images/trip-kids.jpg',
+    imageAlt: 'A young angler grinning with a smallmouth bass he caught',
+    focus: 'center 30%',
     group: 'Family & Getaways',
     requestOnly: true,
   },
@@ -147,9 +146,9 @@ export const trips: Trip[] = [
     price: 'Price varies',
     blurb:
       'Two days up north on the clearest water in the state. Built around your schedule — reach out and we will put a plan together.',
-    image: '/images/gallery-09.jpg',
-    imageAlt: 'A smallmouth bass caught along a wooded Northern Michigan shoreline',
-    focus: 'center 24%',
+    image: '/images/trip-northern.jpg',
+    imageAlt: 'A client with a smallmouth bass on clear northern water',
+    focus: 'center 25%',
     group: 'Family & Getaways',
   },
   {
@@ -161,9 +160,9 @@ export const trips: Trip[] = [
     duration: '4 hours',
     price: 'From $400',
     blurb: 'The same world-class smallmouth water, in a morning or an afternoon.',
-    image: '/images/gallery-11.jpg',
-    imageAlt: 'A smallmouth bass held up over the open water of Lake St. Clair',
-    focus: 'center 12%',
+    image: '/images/trip-st-clair-half.jpg',
+    imageAlt: 'A young angler holding a thick smallmouth bass',
+    focus: 'center 35%',
     group: 'Half Day Trips',
   },
   {
@@ -176,9 +175,9 @@ export const trips: Trip[] = [
     price: 'From $400',
     blurb: 'A short, focused run at the walleye bite — ideal when the fish are close and thick.',
     // Same walleye shot as the full day trip — it is the only one there is.
-    image: '/images/gallery-03.jpg',
-    imageAlt: 'A walleye caught on the Detroit River',
-    focus: 'center 26%',
+    image: '/images/trip-walleye-half.jpg',
+    imageAlt: 'Two clients aboard with their walleye catch',
+    focus: 'center 58%',
     group: 'Half Day Trips',
   },
   {
@@ -191,9 +190,9 @@ export const trips: Trip[] = [
     price: 'Price varies',
     blurb: 'A half day up north, perfect to tack onto a weekend at the cottage.',
     // Clear turquoise water, which reads as up north.
-    image: '/images/gallery-07.jpg',
-    imageAlt: 'A smallmouth bass caught on clear Northern Michigan water',
-    focus: 'center 28%',
+    image: '/images/trip-northern-half.jpg',
+    imageAlt: 'Clients with a smallmouth bass at golden hour',
+    focus: 'center 30%',
     group: 'Half Day Trips',
   },
 ];
