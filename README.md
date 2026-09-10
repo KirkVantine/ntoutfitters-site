@@ -18,8 +18,8 @@ Owner: **Nathaniel TerBush** — 734-717-0773 — nterbush25@gmail.com
 - `src/layouts/Layout.astro` — header, hamburger nav, footer, SEO tags, `LocalBusiness`
   JSON-LD, and the phone-only sticky action bar.
 - `src/styles/global.css` — the whole design system, ~1000 lines, one file.
-- `public/images/` — logo, hero photos, captain photo, and 11 gallery photos, downloaded from
-  the live site's public CDN and re-encoded to web-friendly sizes.
+- `public/images/` — logo, boat photos, and 25 gallery photos from Nathaniel's own library,
+  converted from iPhone HEIC and re-encoded to web sizes. Naming: `boat-*`, `trip-*`, `g-NN`.
 - `public/fonts/` — Barlow Condensed + Inter, self-hosted (93 KB). No third-party requests.
 
 ## Design notes
@@ -52,12 +52,10 @@ The copy is new, so a few operational claims need his sign-off. They're marked w
    from the live site. If he holds a USCG license and liability insurance, say so — it is one
    of the strongest trust signals a charter site can have.
 5. **Sponsorship season year.** The tier copy is year-neutral now; the live site said "2025".
-6. **Boat specs — REMOVED, awaiting new details.** He has a **new boat** as of Aug 2026.
-   The old Nitro Z18 / Mercury 175 Pro XS specs were read off his earlier photos and are no
-   longer true, so every reference was stripped from the About page, the home page feature
-   card, and a trip blurb rather than left live. Restore the spec table in
-   `src/pages/about.astro` once he sends make, model, power, and capacity. **The photos
-   still show the old boat** and need replacing too.
+6. **Boat specs — CONFIRMED Sep 2026.** 2025 Lund 2075 Pro-V Bass XS, Mercury 250 Pro XS,
+   three large-screen Lowrance units, seats 4 guests plus the captain. The "2075 PRO-V BASS"
+   decal is legible in `public/images/boat-profile.jpg`. All old Nitro / Mercury 175
+   references and photos are gone.
 7. **No testimonials yet.** Deliberately left out rather than invented. Real reviews are the
    single highest-value thing to add — even three or four with first names and a town.
 8. **Photos — refreshed Sep 2026.** Nathaniel supplied ~65 originals (mostly iPhone HEIC).
