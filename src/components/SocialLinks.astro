@@ -33,7 +33,7 @@ const { variant = 'icons' } = Astro.props;
     <>
       {socials.map((s) => (
         <li>
-          {s.name} &mdash;{' '}
+          {s.name}:{' '}
           <a href={s.url} target="_blank" rel="noopener noreferrer">
             {s.handle}
           </a>

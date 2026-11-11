@@ -10,7 +10,7 @@ const stripPhotos = ['g-01', 'g-03', 'g-05', 'trip-kids', 'g-07', 'g-08'];
 ---
 
 <Layout
-  title="N&T Outfitters — Michigan Fishing Charters"
+  title="N&T Outfitters | Michigan Fishing Charters"
   titleTemplate={false}
   description={`Guided fishing charters across Michigan with ${site.captain}. Smallmouth bass on Lake St. Clair, walleye on the Detroit River, and family friendly trips for every skill level.`}
 >
@@ -24,15 +24,14 @@ const stripPhotos = ['g-01', 'g-03', 'g-05', 'trip-kids', 'g-07', 'g-08'];
     </div>
     <div class="hero-inner">
       <div class="hero-content">
-        <p class="eyebrow eyebrow-light">Southeast Michigan &middot; {site.captain}</p>
         <h1>Fish Michigan's Best Water</h1>
         <p>
           Guided bass and walleye charters on Lake St. Clair, the Detroit River, and beyond.
-          Family friendly trips for every skill level — from your first cast to your personal
-          best.
+          Every skill level welcome.
         </p>
-        <div class="btn-row">
-          <a href="/charters" class="btn btn-primary">See Trips &amp; Rates</a>
+        {/* Hidden below 900px, where the sticky bar already offers both of these. */}
+        <div class="btn-row hero-actions">
+          <a href="/charters" class="btn btn-primary">Book a Trip</a>
           <a href={site.phoneHref} class="btn btn-ghost">Call {site.phone}</a>
         </div>
       </div>
@@ -71,7 +70,6 @@ const stripPhotos = ['g-01', 'g-03', 'g-05', 'trip-kids', 'g-07', 'g-08'];
           />
         </div>
         <div class="prose">
-          <p class="eyebrow">Our Vision</p>
           <h2>More Anglers, More Time on the Water</h2>
           <p class="lead">
             N&amp;T Outfitters is dedicated to getting more anglers out on the water, offering
@@ -116,12 +114,11 @@ const stripPhotos = ['g-01', 'g-03', 'g-05', 'trip-kids', 'g-07', 'g-08'];
   <section class="section">
     <div class="wrap">
       <div class="section-head section-head-center">
-        <p class="eyebrow">Why Fish With Us</p>
         <h2>A Day Run the Right Way</h2>
       </div>
 
       <div class="feature-grid">
-        <div class="feature">
+        <div class="feature feature-tint">
           <div class="feature-icon">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
               <path d="M2 17c1.8 0 1.8 1.5 3.6 1.5S7.4 17 9.2 17s1.8 1.5 3.6 1.5S14.6 17 16.4 17s1.8 1.5 3.6 1.5"></path>
@@ -159,26 +156,12 @@ const stripPhotos = ['g-01', 'g-03', 'g-05', 'trip-kids', 'g-07', 'g-08'];
           {/* TODO(nathaniel): confirm exactly what's included before publishing. */}
           <h3>Rods &amp; Tackle On Board</h3>
           <p>
-            Come as you are — the boat is stocked for the day. Bring your Michigan fishing
+            Come as you are. The boat is stocked for the day. Bring your Michigan fishing
             license, sunglasses, and something to drink.
           </p>
         </div>
 
-        <div class="feature">
-          <div class="feature-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
-              <circle cx="12" cy="12" r="9"></circle>
-              <path d="M12 7v5l3.5 2"></path>
-            </svg>
-          </div>
-          <h3>Half Days &amp; Full Days</h3>
-          <p>
-            Four hours, six, eight, or a full weekend up north. Pick the length that fits the
-            group, the weather, and the attention span you're working with.
-          </p>
-        </div>
-
-        <div class="feature">
+        <div class="feature feature-tint">
           <div class="feature-icon">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
               <path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 0 1 18 0Z"></path>
@@ -192,19 +175,6 @@ const stripPhotos = ['g-01', 'g-03', 'g-05', 'trip-kids', 'g-07', 'g-08'];
           </p>
         </div>
 
-        <div class="feature">
-          <div class="feature-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
-              <path d="M4 21V10l8-6 8 6v11"></path>
-              <path d="M9 21v-6h6v6"></path>
-            </svg>
-          </div>
-          <h3>Local &amp; Independent</h3>
-          <p>
-            A Michigan operation backed by local sponsors. You'll deal with the captain
-            directly, start to finish — no call center, no booking desk.
-          </p>
-        </div>
       </div>
     </div>
   </section>
@@ -212,7 +182,6 @@ const stripPhotos = ['g-01', 'g-03', 'g-05', 'trip-kids', 'g-07', 'g-08'];
   <section class="section section-soft">
     <div class="wrap">
       <div class="section-head">
-        <p class="eyebrow">On the Water</p>
         <h2>Recent Catches</h2>
       </div>
       <div class="gallery-strip">

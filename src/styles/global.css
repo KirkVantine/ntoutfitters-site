@@ -49,7 +49,7 @@
   /* Neutrals */
   --ink: #16201a;
   --body: #47524b;
-  --muted: #6d7a72;
+  --muted: #68766e; /* 4.77:1 on white; #6d7a72 measured 4.49 */
   --line: #dfe4e0;
   --bg: #ffffff;
   --bg-soft: #f6f7f5;
@@ -780,6 +780,7 @@ main {
 }
 
 .trip-card {
+  position: relative;
   display: flex;
   flex-direction: column;
   background: var(--surface);
@@ -911,6 +912,14 @@ main {
   margin-bottom: 0.2rem;
 }
 
+/* Stretches the Book link over the whole card so the card is the tap target.
+   Previously only the 106x49 button was tappable, which is a poor phone target. */
+.trip-foot .btn::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+}
+
 .trip-foot {
   display: flex;
   align-items: flex-end;
@@ -937,6 +946,14 @@ main {
 
 .section-soft .feature {
   background: #fff;
+}
+
+/* Two of the four cells carry a tint so the row is not four identical
+   white boxes. */
+.feature-tint,
+.section-soft .feature-tint {
+  background: var(--pine-tint);
+  border-color: #cfe0cf;
 }
 
 .feature-icon {
@@ -1414,8 +1431,8 @@ main {
 }
 
 .social-row a {
-  width: 42px;
-  height: 42px;
+  width: 44px;
+  height: 44px;
   border-radius: 50%;
   border: 1px solid rgba(255, 255, 255, 0.28);
   display: grid;
@@ -1464,6 +1481,23 @@ main {
 @media (max-width: 900px) {
   .mobile-cta {
     display: flex;
+  }
+
+  /* The sticky bar already offers Call and Book, so the hero's pair would be
+     the same two actions twice on one screen. */
+  .hero-actions {
+    display: none;
+  }
+
+  /* 8. Footer links were 19px tall, well under the 44px touch target. */
+  .footer-links a {
+    display: flex;
+    align-items: center;
+    min-height: 44px;
+  }
+
+  .footer-links {
+    gap: 0;
   }
 
   /* Room so the bar never covers the last line of the footer. */

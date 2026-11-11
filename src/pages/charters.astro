@@ -11,7 +11,7 @@ const byGroup = tripGroups.map((group) => ({
 
 const groupBlurbs: Record<string, string> = {
   'Signature Trips': 'Full days on the water we know best.',
-  'Half Day Trips': 'Four hours — a morning or an afternoon bite.',
+  'Half Day Trips': 'Four hours, a morning or an afternoon bite.',
   'Family & Getaways': 'Kids, first-timers, and weekends up north.',
 };
 
@@ -25,9 +25,9 @@ const included = [
 ];
 
 const bring = [
-  'A current Michigan fishing license (required — sold online by the DNR)',
+  'A current Michigan fishing license, sold online by the Michigan DNR',
   'Polarized sunglasses and a hat',
-  'Weather-appropriate layers — it is colder on the water',
+  'Weather-appropriate layers, because it is colder on the water',
   'Food, drinks, and a soft-sided cooler',
   'Sunscreen and a rain jacket',
 ];
@@ -47,7 +47,7 @@ const faqs = [
   },
   {
     q: 'I have never fished before. Is that a problem?',
-    a: 'Not at all — that is a big part of why N&T Outfitters exists. Trips run for every skill level, and the Kids Fishing Lesson is built specifically for young or first-time anglers.',
+    a: 'Not at all. That is a big part of why N&T Outfitters exists. Trips run for every skill level, and the Kids Fishing Lesson is built specifically for young or first-time anglers.',
   },
   {
     q: 'Do we keep the fish?',
@@ -63,7 +63,7 @@ const faqs = [
   },
   {
     q: 'What happens if I need to cancel?',
-    a: "If the captain cancels — weather or any other justifiable reason — your $100 deposit is fully refundable. If you cancel without a justifiable reason, the deposit is not refunded. Life happens, so talk to him; he would rather move your date than lose you as a customer.",
+    a: "If the captain cancels for weather or any other justifiable reason, your $100 deposit is fully refundable. If you cancel without a justifiable reason, the deposit is not refunded. Life happens, so talk to him; he would rather move your date than lose you as a customer.",
   },
 ];
 ---
@@ -92,8 +92,8 @@ const faqs = [
       <section class={`section${i % 2 === 1 ? ' section-soft' : ''}`}>
         <div class="wrap">
           <div class="section-head">
-            <p class="eyebrow">{group}</p>
-            <h2>{groupBlurbs[group]}</h2>
+            <h2>{group}</h2>
+            <p class="lead">{groupBlurbs[group]}</p>
           </div>
           <div class="trip-grid">
             {items.map((trip) => (
@@ -109,14 +109,12 @@ const faqs = [
     <div class="wrap">
       <div class="split">
         <div>
-          <p class="eyebrow eyebrow-light">Included</p>
           <h2>What Comes With the Trip</h2>
           <ul class="checklist">
             {included.map((item) => <li>{item}</li>)}
           </ul>
         </div>
         <div>
-          <p class="eyebrow eyebrow-light">Bring Along</p>
           <h2>What to Pack</h2>
           <ul class="checklist">
             {bring.map((item) => <li>{item}</li>)}
@@ -129,7 +127,6 @@ const faqs = [
   <section class="section">
     <div class="wrap-narrow">
       <div class="section-head section-head-center">
-        <p class="eyebrow">Good to Know</p>
         <h2>Frequently Asked</h2>
       </div>
       <div class="faq">
@@ -160,7 +157,7 @@ const faqs = [
       </p>
       <div class="btn-row">
         <a href={site.phoneHref} class="btn btn-primary">Call {site.phone}</a>
-        <a href={mailto('Fishing trip inquiry')} class="btn btn-ghost">Email an Inquiry</a>
+        <a href={mailto('Fishing trip inquiry')} class="btn btn-ghost">Send an Email</a>
       </div>
     </div>
   </section>

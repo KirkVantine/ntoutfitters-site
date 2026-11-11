@@ -37,7 +37,7 @@ const personLd = {
 {/* Person markup so a search for his name surfaces this page directly. */}
 <Layout
   title={`About ${site.captain}`}
-  description={`Meet ${site.captain} of N&T Outfitters — guided bass and walleye fishing charters across Lake St. Clair, the Detroit River, and Michigan.`}
+  description={`Meet ${site.captain} of N&T Outfitters. Guided bass and walleye fishing charters across Lake St. Clair, the Detroit River, and Michigan.`}
   image="/images/captain.jpg"
 >
   <script type="application/ld+json" slot="head" set:html={JSON.stringify(personLd)} />
@@ -65,7 +65,6 @@ const personLd = {
           />
         </div>
         <div class="prose">
-          <p class="eyebrow">Your Guide</p>
           <h2>Nathaniel TerBush</h2>
           <p class="lead">
             Welcome to N&amp;T Outfitters. I'm Nathaniel TerBush, and I've been fishing my whole
@@ -77,13 +76,13 @@ const personLd = {
             water.
           </p>
           <p>
-            Trips run across {site.region} and up north — Lake St. Clair and Saginaw Bay for
+            Trips run across {site.region} and up north: Lake St. Clair and Saginaw Bay for
             smallmouth, the Detroit River for walleye, and the Huron River Chain of Lakes when
             the big water is blown out. Every trip is family friendly and open to anglers of any
             experience level.
           </p>
           <div class="btn-row">
-            <a href="/charters" class="btn btn-primary">See Trips &amp; Rates</a>
+            <a href="/charters" class="btn btn-primary">Book a Trip</a>
             <a href={site.phoneHref} class="btn btn-outline">Call {site.phone}</a>
           </div>
         </div>
@@ -129,22 +128,21 @@ const personLd = {
   <section class="section">
     <div class="wrap-narrow">
       <div class="section-head section-head-center">
-        <p class="eyebrow">Contact</p>
         <h2>Let's Connect</h2>
         <p class="lead">
-          I'm always looking for new and exciting opportunities — trips, sponsorships, or just
+          I'm always looking for new and exciting opportunities: trips, sponsorships, or just
           talking fishing.
         </p>
       </div>
 
       <ul class="contact-lines">
-        <li>Phone &amp; text &mdash; <a href={site.phoneHref}>{site.phone}</a></li>
-        <li>Email &mdash; <a href={mailto('Hello from the website')}>{site.email}</a></li>
+        <li>Phone and text: <a href={site.phoneHref}>{site.phone}</a></li>
+        <li>Email: <a href={mailto('Hello from the website')}>{site.email}</a></li>
         <SocialLinks variant="list" />
       </ul>
 
       <div class="btn-row">
-        <a href={site.phoneHref} class="btn btn-primary">Call or Text</a>
+        <a href={site.phoneHref} class="btn btn-primary">Call {site.phone}</a>
         <a href={mailto('Hello from the website')} class="btn btn-outline">Send an Email</a>
       </div>
     </div>

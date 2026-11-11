@@ -129,7 +129,7 @@ export const trips: Trip[] = [
     duration: '3 hours',
     price: '$100',
     blurb:
-      'A patient, hands-on introduction for anglers 16 and under. Knot tying, casting, and reading the water — plus catching fish.',
+      'A patient, hands-on introduction for anglers 16 and under. Knot tying, casting, and reading the water, plus catching fish.',
     image: '/images/trip-kids.jpg',
     imageAlt: 'A young angler grinning with a smallmouth bass he caught',
     focus: 'center 30%',
@@ -145,7 +145,7 @@ export const trips: Trip[] = [
     duration: '2 days',
     price: 'Price varies',
     blurb:
-      'Two days up north on the clearest water in the state. Built around your schedule — reach out and we will put a plan together.',
+      'Two days up north on the clearest water in the state. Built around your schedule. Reach out and we will put a plan together.',
     image: '/images/trip-northern.jpg',
     imageAlt: 'A client with a smallmouth bass on clear northern water',
     focus: 'center 25%',
@@ -173,7 +173,7 @@ export const trips: Trip[] = [
     species: 'Walleye',
     duration: '4 hours',
     price: 'From $400',
-    blurb: 'A short, focused run at the walleye bite — ideal when the fish are close and thick.',
+    blurb: 'A short, focused run at the walleye bite, for when the fish are close and thick.',
     // Same walleye shot as the full day trip — it is the only one there is.
     image: '/images/trip-walleye-half.jpg',
     imageAlt: 'Two clients aboard with their walleye catch',

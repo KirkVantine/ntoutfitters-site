@@ -13,7 +13,7 @@ const photos = Array.from({ length: 25 }, (_, i) => {
 
 <Layout
   title="Gallery"
-  description="Photos from N&T Outfitters guided fishing charters — smallmouth bass, walleye, and days on the water across Michigan."
+  description="Photos from N&T Outfitters guided fishing charters. Smallmouth bass, walleye, and days on the water across Michigan."
   image="/images/trip-kids.jpg"
 >
   <section class="page-hero">
@@ -44,7 +44,7 @@ const photos = Array.from({ length: 25 }, (_, i) => {
                   decorative to avoid a screen reader announcing both. */}
               <img src={photo.src} alt="" loading="lazy" decoding="async" />
               <span class="visually-hidden">
-                View photo {i + 1} of {photos.length} — a fish caught on an N&amp;T Outfitters
+                View photo {i + 1} of {photos.length}, a fish caught on an N&amp;T Outfitters
                 charter
               </span>
             </button>
@@ -59,12 +59,11 @@ const photos = Array.from({ length: 25 }, (_, i) => {
       <img src="/images/boat-profile.jpg" alt="" loading="lazy" />
     </div>
     <div class="wrap">
-      <p class="eyebrow eyebrow-light">Your Turn</p>
       <h2>Get in the Next Photo</h2>
       <p>Pick a trip, pick a date, and let's go put a bend in a rod.</p>
       <div class="btn-row">
-        <a href="/charters" class="btn btn-primary">See Trips &amp; Rates</a>
-        <a href={mailto('Fishing trip inquiry')} class="btn btn-ghost">Email {site.captainShort}</a>
+        <a href="/charters" class="btn btn-primary">Book a Trip</a>
+        <a href={mailto('Fishing trip inquiry')} class="btn btn-ghost">Send an Email</a>
       </div>
     </div>
   </section>
