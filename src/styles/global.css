@@ -931,10 +931,25 @@ main {
 
 /* ------------------------------------------------------------ feature cards */
 
+/* Explicit column counts rather than auto-fit. With four cells, auto-fit
+   resolved to three columns around 1024px and left a ragged 3+1 row. These
+   breakpoints can only produce 1, 2 or 4 across. */
 .feature-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  grid-template-columns: 1fr;
   gap: 1.5rem;
+}
+
+@media (min-width: 600px) {
+  .feature-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1060px) {
+  .feature-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
 }
 
 .feature {
